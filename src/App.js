@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState, useContext } from "react";
+import {AppContextProvider, AppContext} from './components/AppContext'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    // const [data, setData] = useState([{}]);
+    // const x = useContext(AppContext);
+
+    // useEffect(() => {
+    //     fetch("http://localhost:4000/api")
+    //         .then((response) => response.json())
+    //         .then((data) => setData(data))
+    //         .catch(e => console.log("Error de la conexion"));
+    // }, []);
+
+    // console.log(x);
+    return (
+        <div>
+            Proyecto BD
+        </div>
+    );
 }
-
-export default App;
