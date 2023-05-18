@@ -1,0 +1,2547 @@
+<div class="buttons">
+  <button>Yes</button>
+  <button>No</button>
+</div>
+
+<!-- CSS -->
+.buttons {
+  display: flex;
+  width: 380px;
+  gap: 10px;
+  --b: 5px;   /* the border thickness */
+  --h: 1.8em; /* the height */
+}
+
+.buttons button {
+  --_c: #88C100;
+  flex: calc(1.25 + var(--_s,0));
+  min-width: 0;
+  font-size: 40px;
+  font-weight: bold;
+  height: var(--h);
+  cursor: pointer;
+  color: var(--_c);
+  border: var(--b) solid var(--_c);
+  background: 
+    conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg) 
+    border-box;
+  clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
+  padding: 0 calc(0.288*var(--h)) 0 0;
+  margin: 0 calc(-0.288*var(--h)) 0 0;
+  box-sizing: border-box;
+  transition: flex .4s;
+}
+.buttons button + button {
+  --_c: #FF003C;
+  flex: calc(.75 + var(--_s,0));
+  background: 
+    conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg) 
+    border-box;
+  clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
+  margin: 0 0 0 calc(-0.288*var(--h));
+  padding: 0 0 0 calc(0.288*var(--h));
+}
+.buttons button:focus-visible {
+  outline-offset: calc(-2*var(--b));
+  outline: calc(var(--b)/2) solid #000;
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:focus-visible + button {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:has(+ button:focus-visible) {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+button:hover,
+button:active:not(:focus-visible) {
+  --_s: .75;
+}
+button:active {
+  box-shadow: inset 0 0 0 100vmax var(--_c);
+  color: #fff;
+}
+
+
+
+body {
+  display: grid;
+  place-content: center;
+  margin: 0;
+  height: 100vh;
+  font-family: system-ui, sans-serif;
+}
+
+<!-- HTML -->
+<a href="#">
+  <!-- Drop as many sparkles in as you need and scope the speed -->
+  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
+      fill="#000"
+    />
+  </svg>
+  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
+      fill="#000"
+    />
+  </svg>
+  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
+      fill="#000"
+    />
+  </svg>
+  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
+      fill="#000"
+    />
+  </svg>
+  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
+      fill="#000"
+    />
+  </svg>
+  <!-- End sparkles -->
+  <span>Click!</span>
+  <span aria-hidden="true">Click!</span>
+</a>
+<!-- CSS -->
+:root {
+  --color: var(--yellow-5);
+  --shadow: var(--yellow-8);
+  --glare: hsl(0 0% 100% / 0.75);
+  --font-size: var(--font-size-fluid-3);
+  --transition: 0.2s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-family: 'Google Sans', sans-serif, system-ui;
+  background: var(--gray-9);
+}
+
+a {
+  --padding: var(--size-2);
+  padding: var(--padding);
+  border-radius: var(--size-4);
+  text-decoration: none;
+  color: transparent;
+  position: relative;
+  transition: background 0.2s;
+}
+
+a:hover {
+  background: var(--gray-8);
+}
+
+span {
+  display: inline-block;
+  font-size: calc(var(--font-size) * 1.5);
+  font-weight: var(--font-weight-9);
+  transition: all 0.2s;
+  text-decoration: none;
+  text-shadow:
+    calc(var(--hover) * (var(--font-size) * -0)) calc(var(--hover) * (var(--font-size) * 0)) var(--shadow),
+    calc(var(--hover) * (var(--font-size) * -0.02)) calc(var(--hover) * (var(--font-size) * 0.02)) var(--shadow),
+    calc(var(--hover) * (var(--font-size) * -0.04)) calc(var(--hover) * (var(--font-size) * 0.04)) var(--shadow),
+    calc(var(--hover) * (var(--font-size) * -0.06)) calc(var(--hover) * (var(--font-size) * 0.06)) var(--shadow),
+    calc(var(--hover) * (var(--font-size) * -0.08)) calc(var(--hover) * (var(--font-size) * 0.08)) var(--shadow),
+    calc(var(--hover) * (var(--font-size) * -0.10)) calc(var(--hover) * (var(--font-size) * 0.10)) var(--shadow);
+/*     calc(var(--hover) * -2px) calc(var(--hover) * 2px) var(--shadow),
+    calc(var(--hover) * -3px) calc(var(--hover) * 3px) var(--shadow),
+    calc(var(--hover) * -4px) calc(var(--hover) * 4px) var(--shadow), */
+/*     calc(var(--hover) * -5px) calc(var(--hover) * 5px) var(--shadow); */
+  transform: translate(calc(var(--hover) * (var(--font-size) * 0.10)), calc(var(--hover) * (var(--font-size) * -0.10)));
+}
+
+span:last-of-type {
+  position: absolute;
+  inset: var(--padding);
+  background: linear-gradient(
+    108deg,
+    transparent 0 55%,
+    var(--glare) 55% 60%,
+    transparent 60% 70%,
+    var(--glare) 70% 85%,
+    transparent 85%
+  ) calc(var(--pos) * -200%) 0% / 200% 100%, var(--color);
+  -webkit-background-clip: text;
+  color: transparent;
+  z-index: 2;
+  text-shadow: none;
+  transform: translate(calc(var(--hover) * (var(--font-size) * 0.10)), calc(var(--hover) * (var(--font-size) * -0.10)));
+}
+
+span:last-of-type {
+  transition: transform 0.2s, background-position 0s;
+}
+
+a:hover span:last-of-type {
+  transition: transform 0.2s, background-position calc(var(--hover) * 1.5s) calc(var(--hover) * 0.25s);
+}
+
+a {
+  --hover: 0.4;
+  --pos: 0;
+}
+
+a:hover {
+  --hover: 1;
+  --pos: 1;
+}
+
+a:active {
+  --hover: 0;
+}
+
+a:active span:last-of-type {
+  --hover: 0;
+  --pos: 1;
+}
+
+a svg {
+	position: absolute;
+	z-index: 3;
+	width: calc(var(--font-size) * 0.5);
+	aspect-ratio: 1;
+}
+
+a svg path {
+	fill: var(--glare);
+}
+
+/* Animation for sparkles */
+
+a:hover svg {
+	animation: sparkle 0.75s calc((var(--delay-step) * var(--d)) * 1s) both;
+}
+
+@keyframes sparkle {
+	50% {
+		transform: translate(-50%, -50%) scale(var(--s, 1));
+	}
+}
+
+a svg {
+	--delay-step: 0.15;
+	top: calc(var(--y, 50) * 1%);
+	left:  calc(var(--x, 0) * 1%);
+	transform: translate(-50%, -50%) scale(0);
+}
+
+a svg:nth-of-type(1) {
+	--x: 0;
+	--y: 20;
+	--s: 1.1;
+	--d: 1;
+}
+
+a svg:nth-of-type(2) {
+	--x: 15;
+	--y: 80;
+	--s: 1.25;
+	--d: 2;
+}
+
+a svg:nth-of-type(3) {
+	--x: 45;
+	--y: 40;
+	--s: 1.1;
+	--d: 3;
+}
+
+a svg:nth-of-type(4) {
+	--x: 75;
+	--y: 60;
+	--s: 0.9;
+	--d: 2;
+}
+
+a svg:nth-of-type(5) {
+	--x: 100;
+	--y: 30;
+	--s: 0.8;
+	--d: 4;
+}
+
+<div class="container">
+    <a class="button" href="#" style="--color:#1e9bff;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Button
+    </a>
+    <a class="button" href="#" style="--color: #ff1867;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Button
+    </a>
+    <a class="button" href="#" style="--color: #6eff3e;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Button
+    </a>
+  </div>
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 120px;
+  background: #27282c;
+}
+
+.button {
+  position: relative;
+  padding: 16px 30px;
+  font-size: 1.5rem;
+  color: var(--color);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  text-shadow: 0 0 15px var(--color);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.button:hover {
+  color: #fff;
+  border: 2px solid rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0px var(--color);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color);
+  z-index: -1;
+  transform: scale(0);
+  transition: 0.5s;
+}
+
+.button:hover::before {
+  transform: scale(1);
+  transition-delay: 0.5s;
+  box-shadow: 0 0 10px var(--color),
+    0 0 30px var(--color),
+    0 0 60px var(--color);
+}
+
+.button span {
+  position: absolute;
+  background: var(--color);
+  pointer-events: none;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--color),
+    0 0 20px var(--color),
+    0 0 30px var(--color),
+    0 0 50px var(--color),
+    0 0 100px var(--color);
+  transition: 0.5s ease-in-out;
+  transition-delay: 0.25s;
+}
+
+.button:hover span {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.button span:nth-child(1),
+.button span:nth-child(3) {
+  width: 40px;
+  height: 4px;
+}
+
+.button:hover span:nth-child(1),
+.button:hover span:nth-child(3) {
+  transform: translateX(0);
+}
+
+.button span:nth-child(2),
+.button span:nth-child(4) {
+  width: 4px;
+  height: 40px;
+}
+
+.button:hover span:nth-child(1),
+.button:hover span:nth-child(3) {
+  transform: translateY(0);
+}
+
+.button span:nth-child(1) {
+  top: calc(50% - 2px);
+  left: -50px;
+  transform-origin: left;
+}
+
+.button:hover span:nth-child(1) {
+  left: 50%;
+}
+
+.button span:nth-child(3) {
+  top: calc(50% - 2px);
+  right: -50px;
+  transform-origin: right;
+}
+
+.button:hover span:nth-child(3) {
+  right: 50%;
+}
+
+.button span:nth-child(2) {
+  left: calc(50% - 2px);
+  top: -50px;
+  transform-origin: top;
+}
+
+.button:hover span:nth-child(2) {
+  top: 50%;
+}
+
+.button span:nth-child(4) {
+  left: calc(50% - 2px);
+  bottom: -50px;
+  transform-origin: bottom;
+}
+
+.button:hover span:nth-child(4 ) {
+  bottom: 50%;
+}
+
+<!-- This was all taken from https://tympanus.net/Development/ButtonStylesInspiration/ but I needed to see it in CodePen -->
+
+<div class="container">
+    <header class="codrops-header">
+        <h1>Button Styles Inspiration <span>Some fresh styles &amp; hover effects for the modern button</span></h1>
+        <div class="codrops-links">
+            <a class="codrops-icon codrops-icon--prev" href="https://tympanus.net/Tutorials/AnimatedTextFills/" title="Previous Demo"><span>Previous Demo</span></a>
+            <a class="codrops-icon codrops-icon--drop" href="https://tympanus.net/codrops/?p=23342" title="Back to the article"><span>Back to the Codrops article</span></a>
+        </div>
+        <div class="support" id="support-note">Please note that (mobile) Safari's behavior is very buggy and only some effects will work properly.</div>
+    </header>
+    <section class="content">
+        <h2>Winona</h2>
+        <div class="box bg-1">
+            <button class="button button--winona button--border-thin button--round-s" data-text="Open Project"><span>Open Project</span></button>
+            <button class="button button--winona button--border-thin button--round-s" data-text="Create New"><span>Create New</span></button>
+            <button class="button button--winona button--border-thin button--round-s" data-text="Publish"><span>Publish</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--winona button--border-thick button--round-l button--text-upper button--size-s button--text-thick" data-text="Open Project"><span>Open Project</span></button>
+            <button class="button button--winona button--border-thick button--round-l button--text-upper button--size-s button--text-thick" data-text="Create New"><span>Create New</span></button>
+            <button class="button button--winona button--border-thick button--round-l button--text-upper button--size-s button--text-thick" data-text="Publish"><span>Publish</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--winona button--border-thin button--text-thick button--inverted" data-text="Open Project"><span>Open Project</span></button>
+            <button class="button button--winona button--border-thin button--text-thick button--inverted" data-text="Create New"><span>Create New</span></button>
+            <button class="button button--winona button--border-thin button--text-thick button--inverted" data-text="Publish"><span>Publish</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Ujarak</h2>
+        <div class="box bg-1">
+            <button class="button button--ujarak button--border-thin button--text-thick">Publish</button>
+            <button class="button button--ujarak button--border-thin button--text-thick">Vote</button>
+            <button class="button button--ujarak button--border-thin button--text-thick">Delete</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--ujarak button--border-medium button--round-s button--text-thick">Publish</button>
+            <button class="button button--ujarak button--border-medium button--round-s button--text-thick">Vote</button>
+            <button class="button button--ujarak button--border-medium button--round-s button--text-thick">Delete</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--ujarak button--border-thick button--text-upper button--size-s button--inverted button--text-thick">Publish</button>
+            <button class="button button--ujarak button--border-thick button--text-upper button--size-s button--inverted button--text-thick">Vote</button>
+            <button class="button button--ujarak button--border-thick button--text-upper button--size-s button--inverted button--text-thick">Delete</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Wayra</h2>
+        <div class="box bg-1">
+            <button class="button button--wayra button--border-thick button--text-upper button--size-s">Remove</button>
+            <button class="button button--wayra button--border-thick button--text-upper button--size-s">Open Project</button>
+            <button class="button button--wayra button--border-thick button--text-upper button--size-s">Buy Now</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--wayra button--border-thin button--round-s">Remove</button>
+            <button class="button button--wayra button--border-thin button--round-s">Open Project</button>
+            <button class="button button--wayra button--border-thin button--round-s">Buy Now</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--wayra button--border-medium button--text-upper button--size-s button--text-thick button--inverted">Remove</button>
+            <button class="button button--wayra button--border-medium button--text-upper button--size-s button--text-thick button--inverted">Open Project</button>
+            <button class="button button--wayra button--border-medium button--text-upper button--size-s button--text-thick button--inverted">Buy Now</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Tamaya</h2>
+        <div class="box bg-1">
+            <button class="button button--tamaya button--border-thick" data-text="Open"><span>Open</span></button>
+            <button class="button button--tamaya button--border-thick" data-text="Send"><span>Send</span></button>
+            <button class="button button--tamaya button--border-thick" data-text="Copy"><span>Copy</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--tamaya button--round-l button--text-thick button--border-medium button--text-upper button--size-s button--inverted" data-text="Open"><span>Open</span></button>
+            <button class="button button--tamaya button--round-l button--text-thick button--border-medium button--text-upper button--size-s button--inverted" data-text="Send"><span>Send</span></button>
+            <button class="button button--tamaya button--round-l button--text-thick button--border-medium button--text-upper button--size-s button--inverted" data-text="Copy"><span>Copy</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--tamaya button--round-s button--text-thick button--border-thin" data-text="Open"><span>Open</span></button>
+            <button class="button button--tamaya button--round-s button--text-thick button--border-thin" data-text="Send"><span>Send</span></button>
+            <button class="button button--tamaya button--round-s button--text-thick button--border-thin" data-text="Copy"><span>Copy</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Rayen</h2>
+        <div class="box bg-1">
+            <button class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Send Message"><span>Send Message</span></button>
+            <button class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Request a Quote"><span>Request a Quote</span></button>
+            <button class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Publish Comment"><span>Publish Comment</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--rayen button--border-medium button--text-thin button--size-l button--inverted" data-text="Send Message"><span>Send Message</span></button>
+            <button class="button button--rayen button--border-medium button--text-thin button--size-l button--inverted" data-text="Request a Quote"><span>Request a Quote</span></button>
+            <button class="button button--rayen button--border-medium button--text-thin button--size-l button--inverted" data-text="Publish Comment"><span>Publish Comment</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--rayen button--border-thick button--text-thick" data-text="Send Message"><span>Send Message</span></button>
+            <button class="button button--rayen button--border-thick button--text-thick" data-text="Request a Quote"><span>Request a Quote</span></button>
+            <button class="button button--rayen button--border-thick button--text-thick" data-text="Publish Comment"><span>Publish Comment</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Pipaluk</h2>
+        <div class="box bg-1">
+            <button class="button button--pipaluk button--text-thick">Add to Cart</button>
+            <button class="button button--pipaluk button--text-thick">Cancel</button>
+            <button class="button button--pipaluk button--text-thick">Reset</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--pipaluk button--inverted button--round-l button--text-thick button--text-upper">Add to Cart</button>
+            <button class="button button--pipaluk button--inverted button--round-l button--text-thick button--text-upper">Cancel</button>
+            <button class="button button--pipaluk button--inverted button--round-l button--text-thick button--text-upper">Reset</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--pipaluk button--inverted  button--round-s button--text-thick">Add to Cart</button>
+            <button class="button button--pipaluk button--inverted  button--round-s button--text-thick">Cancel</button>
+            <button class="button button--pipaluk button--inverted  button--round-s button--text-thick">Reset</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Moema</h2>
+        <p>Based on the <a href="https://dribbble.com/shots/1918524-Add-New-Location">"Add New Location"</a> button concept by Charles Patterson. Better as a click effect than on hover.</p>
+        <div class="box bg-1">
+            <button class="button button--moema button--text-thick button--text-upper button--size-s">Make it so</button>
+            <button class="button button--moema button--text-thick button--text-upper button--size-s">Add to cart</button>
+            <button class="button button--moema button--text-thick button--text-upper button--size-s">Send now</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--moema button--border-thick button--size-s">Make it so</button>
+            <button class="button button--moema button--border-thick button--size-s">Add to cart</button>
+            <button class="button button--moema button--border-thick button--size-s">Send now</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--moema button--inverted button--text-thick button--size-s">Make it so</button>
+            <button class="button button--moema button--inverted button--text-thick button--size-s">Add to cart</button>
+            <button class="button button--moema button--inverted button--text-thick button--size-s">Send now</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Isi</h2>
+        <div class="box bg-1">
+            <button class="button button--isi button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-box"></i><span>Archive</span></button>
+            <button class="button button--isi button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-forward"></i><span>Forward</span></button>
+            <button class="button button--isi button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-reply"></i><span>Reply</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--isi button--border-thin button--size-s button--round-s"><i class="button__icon icon icon-box"></i><span>Archive</span></button>
+            <button class="button button--isi button--border-thin button--size-s button--round-s"><i class="button__icon icon icon-forward"></i><span>Forward</span></button>
+            <button class="button button--isi button--border-thin button--size-s button--round-s"><i class="button__icon icon icon-reply"></i><span>Reply</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--isi button--border-thick button--round-l button--size-s"><i class="button__icon icon icon-box"></i><span>Archive</span></button>
+            <button class="button button--isi button--border-thick button--round-l button--size-s"><i class="button__icon icon icon-forward"></i><span>Forward</span></button>
+            <button class="button button--isi button--border-thick button--round-l button--size-s"><i class="button__icon icon icon-reply"></i><span>Reply</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Aylen</h2>
+        <div class="box bg-1">
+            <button class="button button--aylen button--round-l button--text-thick">Next Song</button>
+            <button class="button button--aylen button--round-l button--text-thick">Hold</button>
+            <button class="button button--aylen button--round-l button--text-thick">Previous Song</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--aylen button--border-thin button--round-s">Next Song</button>
+            <button class="button button--aylen button--border-thin button--round-s">Hold</button>
+            <button class="button button--aylen button--border-thin button--round-s">Previous Song</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">Next Song</button>
+            <button class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">Hold</button>
+            <button class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">Previous Song</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Saqui</h2>
+        <div class="box bg-1">
+            <button class="button button--saqui button--round-l button--text-thick" data-text="Add Issue">Add Issue</button>
+            <button class="button button--saqui button--round-l button--text-thick" data-text="Send Message">Send Message</button>
+            <button class="button button--saqui button--round-l button--text-thick" data-text="Follow">Follow</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--saqui button--inverted button--border-thin button--round-s" data-text="Add Issue">Add Issue</button>
+            <button class="button button--saqui button--inverted button--border-thin button--round-s" data-text="Send Message">Send Message</button>
+            <button class="button button--saqui button--inverted button--border-thin button--round-s" data-text="Follow">Follow</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Add Issue">Add Issue</button>
+            <button class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Send Message">Send Message</button>
+            <button class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Follow">Follow</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Wapasha</h2>
+        <div class="box bg-1">
+            <button class="button button--wapasha button--round-s">Hide</button>
+            <button class="button button--wapasha button--round-s">Add to Cart</button>
+            <button class="button button--wapasha button--round-s">Send Request</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--wapasha button--text-thick button--text-upper button--size-s">Hide</button>
+            <button class="button button--wapasha button--text-thick button--text-upper button--size-s">Add to Cart</button>
+            <button class="button button--wapasha button--text-thick button--text-upper button--size-s">Send Request</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--wapasha button--round-l button--text-thick button--inverted">Hide</button>
+            <button class="button button--wapasha button--round-l button--text-thick button--inverted">Add to Cart</button>
+            <button class="button button--wapasha button--round-l button--text-thick button--inverted">Send Request</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Nina</h2>
+        <div class="box bg-1">
+            <button class="button button--nina button--text-thick button--text-upper button--size-s" data-text="Filter">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nina button--text-thick button--text-upper button--size-s" data-text="Create">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nina button--text-thick button--text-upper button--size-s" data-text="Send Mail">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--nina button--round-l button--text-thick button--inverted" data-text="Filter">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nina button--round-l button--text-thick button--inverted" data-text="Create">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nina button--round-l button--text-thick button--inverted" data-text="Send Mail">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--nina button--border-thin button--round-s" data-text="Filter">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nina button--border-thin button--round-s" data-text="Create">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nina button--border-thin button--round-s" data-text="Send Mail">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Nanuk</h2>
+        <div class="box bg-1">
+            <button class="button button--nanuk button--text-thick button--text-upper button--size-s button--border-thick">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nanuk button--text-thick button--text-upper button--size-s button--border-thick">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nanuk button--text-thick button--text-upper button--size-s button--border-thick">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--nanuk button--round-l button--text-thick button--inverted">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nanuk button--round-l button--text-thick button--inverted">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nanuk button--round-l button--text-thick button--inverted">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--nanuk button--border-thin button--round-s">
+                <span>F</span><span>i</span><span>l</span><span>t</span><span>e</span><span>r</span>
+            </button>
+            <button class="button button--nanuk button--border-thin button--round-s">
+                <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span>
+            </button>
+            <button class="button button--nanuk button--border-thin button--round-s">
+                <span>S</span><span>e</span><span>n</span><span>d</span> <span>M</span><span>a</span><span>i</span><span>l</span>
+            </button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Nuka</h2>
+        <div class="box bg-1">
+            <button class="button button--nuka button--round-s button--text-thick">Add to Cart</button>
+            <button class="button button--nuka button--round-s button--text-thick">Subscribe</button>
+            <button class="button button--nuka button--round-s button--text-thick">Submit Order</button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--nuka button--round-l button--inverted button--text-thick button--text-upper button--size-s">Add to Cart</button>
+            <button class="button button--nuka button--round-l button--inverted button--text-thick button--text-upper button--size-s">Subscribe</button>
+            <button class="button button--nuka button--round-l button--inverted button--text-thick button--text-upper button--size-s">Submit Order</button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--nuka">Add to Cart</button>
+            <button class="button button--nuka">Subscribe</button>
+            <button class="button button--nuka">Submit Order</button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Antiman</h2>
+        <div class="box bg-1">
+            <button class="button button--antiman button--round-l button--text-medium"><i class="button__icon icon icon-plus"></i><span>Add New</span></button>
+            <button class="button button--antiman button--round-l button--text-medium"><i class="button__icon icon icon-map-marker"></i><span>Locate</span></button>
+            <button class="button button--antiman button--round-l button--text-medium"><i class="button__icon icon icon-clock"></i><span>Schedule</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick"><i class="button__icon icon icon-plus"></i><span>Add New</span></button>
+            <button class="button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick"><i class="button__icon icon icon-map-marker"></i><span>Locate</span></button>
+            <button class="button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick"><i class="button__icon icon icon-clock"></i><span>Schedule</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--antiman button--inverted button--border-thin button--text-thick button--size-m"><i class="button__icon icon icon-plus"></i><span>Add New</span></button>
+            <button class="button button--antiman button--inverted button--border-thin button--text-thick button--size-m"><i class="button__icon icon icon-map-marker"></i><span>Locate</span></button>
+            <button class="button button--antiman button--inverted button--border-thin button--text-thick button--size-m"><i class="button__icon icon icon-clock"></i><span>Schedule</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Itzel</h2>
+        <svg class="hidden">
+            <defs>
+                <clipPath id="clipBox" clipPathUnits="objectBoundingBox">
+                    <polygon points="0,0 0,1 0.35,1 0.35,0.6 0.65,0.6 0.65,1 1,1 1,0" />
+                </clipPath>
+            </defs>
+        </svg>
+        <div class="box bg-1">
+            <button class="button button--itzel button--text-thick"><i class="button__icon icon icon-cart"></i><span>Express Checkout</span></button>
+            <button class="button button--itzel button--text-thick"><i class="button__icon icon icon-envelope"></i><span>Send Message</span></button>
+            <button class="button button--itzel button--text-thick"><i class="button__icon icon icon-trash"></i><span>Delete Article</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--itzel button--text-thick button--text-upper button--border-thick button--size-s"><i class="button__icon icon icon-cart"></i><span>Express Checkout</span></button>
+            <button class="button button--itzel button--text-thick button--text-upper button--border-thick button--size-s"><i class="button__icon icon icon-envelope"></i><span>Send Message</span></button>
+            <button class="button button--itzel button--text-thick button--text-upper button--border-thick button--size-s"><i class="button__icon icon icon-trash"></i><span>Delete Article</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--itzel button--size-l button--border-thin button--text-thin"><i class="button__icon icon icon-cart"></i><span>Express Checkout</span></button>
+            <button class="button button--itzel button--size-l button--border-thin button--text-thin"><i class="button__icon icon icon-envelope"></i><span>Send Message</span></button>
+            <button class="button button--itzel button--size-l button--border-thin button--text-thin"><i class="button__icon icon icon-trash"></i><span>Delete Article</span></button>
+        </div>
+        <p><a href="http://caniuse.com/#feat=css-clip-path">clip-path</a> does not work in IE, so you'll see the line under the icon.</p>
+    </section>
+    <section class="content">
+        <h2>Naira</h2>
+        <div class="box bg-1">
+            <button class="button button--naira button--round-s button--border-thin"><i class="button__icon icon icon-download"></i><span>Download</span></button>
+            <button class="button button--naira button--round-s button--border-thin button--naira-up"><i class="button__icon icon icon-upload"></i><span>Upload</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--naira button--border-thick button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-download"></i><span>Download</span></button>
+            <button class="button button--naira button--border-thick button--text-thick button--text-upper button--size-s button--naira-up"><i class="button__icon icon icon-upload"></i><span>Upload</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--naira button--border-medium button--round-l button--text-thick button--inverted"><i class="button__icon icon icon-download"></i><span>Download</span></button>
+            <button class="button button--naira button--border-medium button--round-l button--text-thick button--inverted button--naira-up"><i class="button__icon icon icon-upload"></i><span>Upload</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Quidel</h2>
+        <div class="box bg-1">
+            <button class="button button--quidel button--round-s"><i class="button__icon icon icon-cross"></i><span>Delete</span></button>
+            <button class="button button--quidel button--round-s"><i class="button__icon icon icon-flag"></i><span>Flag</span></button>
+            <button class="button button--quidel button--round-s"><i class="button__icon icon icon-search"></i><span>Search</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--quidel button--inverted button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-cross"></i><span>Delete</span></button>
+            <button class="button button--quidel button--inverted button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-flag"></i><span>Flag</span></button>
+            <button class="button button--quidel button--inverted button--text-thick button--text-upper button--size-s"><i class="button__icon icon icon-search"></i><span>Search</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--quidel button--inverted"><i class="button__icon icon icon-cross"></i><span>Delete</span></button>
+            <button class="button button--quidel button--inverted"><i class="button__icon icon icon-flag"></i><span>Flag</span></button>
+            <button class="button button--quidel button--inverted"><i class="button__icon icon icon-search"></i><span>Search</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Sacnite</h2>
+        <div class="box bg-1">
+            <button class="button button--sacnite"><i class="button__icon icon icon-user"></i><span>User</span></button>
+            <button class="button button--sacnite"><i class="button__icon icon icon-bookmark"></i><span>Bookmark</span></button>
+            <button class="button button--sacnite"><i class="button__icon icon icon-bell"></i><span>Alert</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--sacnite button--round-l"><i class="button__icon icon icon-user"></i><span>User</span></button>
+            <button class="button button--sacnite button--round-l"><i class="button__icon icon icon-bookmark"></i><span>Bookmark</span></button>
+            <button class="button button--sacnite button--round-l"><i class="button__icon icon icon-bell"></i><span>Alert</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--sacnite button--round-s button--inverted"><i class="button__icon icon icon-user"></i><span>User</span></button>
+            <button class="button button--sacnite button--round-s button--inverted"><i class="button__icon icon icon-bookmark"></i><span>Bookmark</span></button>
+            <button class="button button--sacnite button--round-s button--inverted"><i class="button__icon icon icon-bell"></i><span>Alert</span></button>
+        </div>
+    </section>
+    <section class="content">
+        <h2>Shikoba</h2>
+        <p>Based on <a href="https://dribbble.com/shots/1534868-Portfolio-update">Portfolio Update!</a> by Dennis Flinsenberg</p>
+        <div class="box bg-1">
+            <button class="button button--shikoba button--round-s button--border-thin"><i class="button__icon icon icon-microphone"></i><span>Start Recording</span></button>
+            <button class="button button--shikoba button--round-s button--border-thin"><i class="button__icon icon icon-next"></i><span>Next Song</span></button>
+            <button class="button button--shikoba button--round-s button--border-thin"><i class="button__icon icon icon-camera"></i><span>Take picture</span></button>
+        </div>
+        <div class="box bg-2">
+            <button class="button button--shikoba button--text-thick button--border-medium button--text-upper button--size-s"><i class="button__icon icon icon-microphone"></i><span>Start Recording</span></button>
+            <button class="button button--shikoba button--text-thick button--border-medium button--text-upper button--size-s"><i class="button__icon icon icon-next"></i><span>Next Song</span></button>
+            <button class="button button--shikoba button--text-thick button--border-medium button--text-upper button--size-s"><i class="button__icon icon icon-camera"></i><span>Take picture</span></button>
+        </div>
+        <div class="box bg-3">
+            <button class="button button--shikoba button--text-medium button--round-l button--inverted"><i class="button__icon icon icon-microphone"></i><span>Start Recording</span></button>
+            <button class="button button--shikoba button--text-medium button--round-l button--inverted"><i class="button__icon icon icon-next"></i><span>Next Song</span></button>
+            <button class="button button--shikoba button--text-medium button--round-l button--inverted"><i class="button__icon icon icon-camera"></i><span>Take picture</span></button>
+        </div>
+    </section>
+    <!-- Related demos -->
+    <section class="content content--related">
+        <p>Icons <a href="https://dribbble.com/shots/1663443-60-Vicons-Free-Icon-Set">&quot;Vicons&quot;</a> by Victor Erixon. Icon font made with <a href="https://icomoon.io/app">IcoMoon</a>.</p>
+        <p>If you enjoyed this demo you might also like:</p>
+        <a class="media-item" href="https://tympanus.net/Development/CreativeButtons/">
+            <img class="media-item__img" src="img/related/CreativeButtons.png">
+            <h3 class="media-item__title">Creative Button Styles</h3>
+        </a>
+        <a class="media-item" href="https://tympanus.net/Development/ProgressButtonStyles/">
+            <img class="media-item__img" src="img/related/ProgressButtonStyles.png">
+            <h3 class="media-item__title">Progress Button Styles</h3>
+        </a>
+    </section>
+</div><!-- /container -->
+
+/*This was all taken from https://tympanus.net/Development/ButtonStylesInspiration/ but I needed to see it in CodePen
+*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600);
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src: url("../fonts/codropsicons/codropsicons.eot");
+	src: url("../fonts/codropsicons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/codropsicons/codropsicons.woff") format("woff"), url("../fonts/codropsicons/codropsicons.ttf") format("truetype"), url("../fonts/codropsicons/codropsicons.svg#codropsicons") format("svg");
+}
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.cf:before,
+.cf:after {
+	content: '';
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+body {
+	background: #cfd8dc;
+	color: #37474f;
+	font-weight: 400;
+	font-size: 1em;
+	font-family: 'Raleway', Arial, sans-serif;
+}
+.support {
+	font-weight: bold;
+	padding: 2em 0 0 0;
+	font-size: 1.4em;
+	color: #ee2563;
+	display: none;
+}
+a {
+	color: #7986cb;
+	text-decoration: none;
+	outline: none;
+}
+a:hover,
+a:focus {
+	color: #3f51b5;
+}
+.hidden {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+.container {
+	margin: 0 auto;
+	text-align: center;
+	overflow: hidden;
+}
+.content {
+	padding: 2em 1em 5em;
+	z-index: 1;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.content h2 {
+	margin: 0 0 2em;
+}
+.content p {
+	margin: 1em 0;
+	padding: 0 0 2em;
+	font-size: 0.85em;
+}
+.box {
+	padding: 4.5em 0;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+/* Header */
+.codrops-header {
+	padding: 3em 190px 4em;
+	letter-spacing: -1px;
+}
+.codrops-header h1 {
+	font-weight: 200;
+	font-size: 4em;
+	line-height: 1;
+	margin-bottom: 0;
+}
+.codrops-header h1 span {
+	display: block;
+	font-size: 40%;
+	letter-spacing: 0;
+	padding: 0.5em 0 1em 0;
+	color: #A8B3B8;
+}
+
+/* Top Navigation Style */
+.codrops-links {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	font-size: 1.25em;
+	text-align: center;
+}
+.codrops-links::after {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 1px;
+	height: 100%;
+	background: #BFCACF;
+	content: '';
+	-webkit-transform: rotate3d(0, 0, 1, 22.5deg);
+	transform: rotate3d(0, 0, 1, 22.5deg);
+}
+.codrops-icon {
+	display: inline-block;
+	margin: 0.5em;
+	padding: 0em 0;
+	width: 1.5em;
+	text-decoration: none;
+}
+.codrops-icon:before {
+	margin: 0 5px;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'codropsicons';
+	line-height: 1;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+}
+.codrops-icon span {
+	display: none;
+}
+.codrops-icon--drop:before {
+	content: "\e001";
+}
+.codrops-icon--prev:before {
+	content: "\e004";
+}
+
+/* Related demos */
+.content--related {
+	text-align: center;
+	font-weight: 600;
+}
+.media-item {
+	display: inline-block;
+	padding: 1em;
+	margin: 1em 0 0 0;
+	vertical-align: top;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+.media-item__img {
+	opacity: 0.8;
+	max-width: 100%;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+.media-item:hover .media-item__img,
+.media-item:focus .media-item__img {
+	opacity: 1;
+}
+.media-item__title {
+	font-size: 0.85em;
+	margin: 0;
+	padding: 0.5em;
+}
+@media screen and (max-width:50em) {
+	.codrops-header {
+		padding: 3em 10% 4em;
+	}
+}
+@media screen and (max-width:40em) {
+	.codrops-header h1 {
+		font-size: 2.8em;
+	}
+}
+
+/* Box colors */
+.bg-1 {
+	background: #ECEFF1;
+	color: #37474f;
+}
+.bg-2 {
+	background: #7986cb;
+	color: #ECEFF1;
+}
+.bg-3 {
+	background: #37474f;
+	color: #fff;
+}
+
+/* Common button styles */
+.button {
+	float: left;
+	min-width: 150px;
+	max-width: 250px;
+	display: block;
+	margin: 1em;
+	padding: 1em 2em;
+	border: none;
+	background: none;
+	color: inherit;
+	vertical-align: middle;
+	position: relative;
+	z-index: 1;
+	-webkit-backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+}
+.button:focus {
+	outline: none;
+}
+.button > span {
+	vertical-align: middle;
+}
+
+/* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
+.bg-1 .button {
+	color: #37474f;
+	border-color: #37474f;
+}
+.bg-2 .button {
+	color: #ECEFF1;
+	border-color: #ECEFF1;
+}
+.bg-3 .button {
+	color: #fff;
+	border-color: #fff;
+}
+
+/* Sizes */
+.button--size-s {
+	font-size: 14px;
+}
+.button--size-m {
+	font-size: 16px;
+}
+.button--size-l {
+	font-size: 18px;
+}
+
+/* Typography and Roundedness */
+.button--text-upper {
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+.button--text-thin {
+	font-weight: 300;
+}
+.button--text-medium {
+	font-weight: 500;
+}
+.button--text-thick {
+	font-weight: 600;
+}
+.button--round-s {
+	border-radius: 5px;
+}
+.button--round-m {
+	border-radius: 15px;
+}
+.button--round-l {
+	border-radius: 40px;
+}
+
+/* Borders */
+.button--border-thin {
+	border: 1px solid;
+}
+.button--border-medium {
+	border: 2px solid;
+}
+.button--border-thick {
+	border: 3px solid;
+}
+
+/* Individual button styles */
+
+/* Winona */
+.button--winona {
+	overflow: hidden;
+	padding: 0;
+	-webkit-transition: border-color 0.3s, background-color 0.3s;
+	transition: border-color 0.3s, background-color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona::after {
+	content: attr(data-text);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	color: #3f51b5;
+	-webkit-transform: translate3d(0, 25%, 0);
+	transform: translate3d(0, 25%, 0);
+}
+.button--winona > span {
+	display: block;
+}
+.button--winona.button--inverted {
+	color: #7986cb;
+}
+.button--winona.button--inverted:after {
+	color: #fff;
+}
+.button--winona::after,
+.button--winona > span {
+	padding: 1em 2em;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona:hover {
+	border-color: #3f51b5;
+	background-color: rgba(63, 81, 181, 0.1);
+}
+.button--winona.button--inverted:hover {
+	border-color: #21333C;
+	background-color: #21333C;
+}
+.button--winona:hover::after {
+	opacity: 1;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--winona:hover > span {
+	opacity: 0;
+	-webkit-transform: translate3d(0, -25%, 0);
+	transform: translate3d(0, -25%, 0);
+}
+
+/* Ujarak */
+.button--ujarak {
+	-webkit-transition: border-color 0.4s, color 0.4s;
+	transition: border-color 0.4s, color 0.4s;
+}
+.button--ujarak::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #37474f;
+	z-index: -1;
+	opacity: 0;
+	-webkit-transform: scale3d(0.7, 1, 1);
+	transform: scale3d(0.7, 1, 1);
+	-webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+	transition: transform 0.4s, opacity 0.4s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--ujarak.button--round-s::before {
+	border-radius: 2px;
+}
+.button--ujarak.button--inverted::before {
+	background: #7986CB;
+}
+.button--ujarak,
+.button--ujarak::before {
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--ujarak:hover {
+	color: #fff;
+	border-color: #37474f;
+}
+.button--ujarak.button--inverted:hover {
+	color: #37474F;
+	border-color: #fff;
+}
+.button--ujarak:hover::before {
+	opacity: 1;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+/* Wayra */
+.button--wayra {
+	overflow: hidden;
+	width: 245px;
+	-webkit-transition: border-color 0.3s, color 0.3s;
+	transition: border-color 0.3s, color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150%;
+	height: 100%;
+	background: #37474f;
+	z-index: -1;
+	-webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+	transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+	-webkit-transform-origin: 0% 100%;
+	transform-origin: 0% 100%;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+	transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.button--wayra:hover {
+	color: #fff;
+	border-color: #3f51b5;
+}
+.button--wayra.button--inverted:hover {
+	color: #3f51b5;
+	border-color: #fff;
+}
+.button--wayra:hover::before {
+	opacity: 1;
+	background-color: #3f51b5;
+	-webkit-transform: rotate3d(0, 0, 1, 0deg);
+	transform: rotate3d(0, 0, 1, 0deg);
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra.button--inverted:hover::before {
+	background-color: #fff;
+}
+
+/* Tamaya */
+.button--tamaya {
+	overflow: hidden;
+	color: #7986cb;
+	min-width: 180px;
+}
+.button--tamaya.button--inverted {
+	color: #37474f;
+	border-color: #37474f;
+}
+.button--tamaya::before,
+.button--tamaya::after {
+	content: attr(data-text);
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	left: 0;
+	background: #7986cb;
+	color: #fff;
+	overflow: hidden;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--tamaya.button--inverted::before,
+.button--tamaya.button--inverted::after {
+	background: #fff;
+	color: #37474f;
+}
+.button--tamaya::before {
+	top: 0;
+	padding-top: 1em;
+}
+.button--tamaya::after {
+	bottom: 0;
+	line-height: 0;
+}
+.button--tamaya > span {
+	display: block;
+	-webkit-transform: scale3d(0.2, 0.2, 1);
+	transform: scale3d(0.2, 0.2, 1);
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--tamaya:hover::before {
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+}
+.button--tamaya:hover::after {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.button--tamaya:hover > span {
+	opacity: 1;
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+/* Rayen */
+.button--rayen {
+	overflow: hidden;
+	padding: 0;
+	width: 230px;
+}
+.button--rayen.button--inverted {
+	color: #fff;
+}
+.button--rayen::before {
+	content: attr(data-text);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #7986cb;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+}
+.button--rayen.button--inverted::before {
+	background: #fff;
+	color: #37474f;
+}
+.button--rayen > span {
+	display: block;
+}
+.button--rayen::before,
+.button--rayen > span {
+	padding: 1em 2em;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--rayen:hover::before {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--rayen:hover > span {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+
+/* Pipaluk */
+.button--pipaluk {
+	width: 240px;
+	padding: 1.5em 3em;
+	color: #fff;
+}
+.button--pipaluk.button--inverted {
+	color: #7986cb;
+}
+.button--pipaluk::before,
+.button--pipaluk::after {
+	content: '';
+	border-radius: inherit;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+	transition: transform 0.3s, background-color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+}
+.button--pipaluk::before {
+	border: 2px solid #7986cb;
+}
+.button--pipaluk.button--inverted::before {
+	border-color: #fff;
+}
+.button--pipaluk::after {
+	background: #7986cb;
+}
+.button--pipaluk.button--inverted::after {
+	background: #fff;
+}
+.button--pipaluk:hover::before {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+.button--pipaluk::before,
+.button--pipaluk:hover::after {
+	-webkit-transform: scale3d(0.7, 0.7, 1);
+	transform: scale3d(0.7, 0.7, 1);
+}
+.button--pipaluk:hover::after {
+	background-color: #3f51b5;
+}
+.button--pipaluk.button--inverted:hover::after {
+	background-color: #fff;
+}
+
+/* Nuka */
+.button--nuka {
+	margin: 1em 2em;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--nuka.button--inverted {
+	color: #37474f;
+}
+.button--nuka::before,
+.button--nuka::after {
+	content: '';
+	position: absolute;
+	border-radius: inherit;
+	background: #7986cb;
+	z-index: -1;
+}
+.button--nuka::before {
+	top: -4px;
+	bottom: -4px;
+	left: -4px;
+	right: -4px;
+	opacity: 0.2;
+	-webkit-transform: scale3d(0.7, 1, 1);
+	transform: scale3d(0.7, 1, 1);
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+}
+.button--nuka::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: scale3d(1.1, 1, 1);
+	transform: scale3d(1.1, 1, 1);
+	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+	transition: transform 0.3s, background-color 0.3s;
+}
+.button--nuka::before,
+.button--nuka::after {
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--nuka.button--inverted::before,
+.button--nuka.button--inverted::after {
+	background: #fff;
+}
+.button--nuka:hover {
+	color: #fff;
+}
+.button--nuka:hover::before {
+	opacity: 1;
+}
+.button--nuka:hover::after {
+	background-color: #37474f;
+}
+.button--nuka.button--inverted:hover::after {
+	background-color: #7986cb;
+}
+.button--nuka:hover::after,
+.button--nuka:hover::before {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+/* Moema */
+.button--moema {
+	padding: 1.5em 3em;
+	border-radius: 50px;
+	background: #7986cb;
+	color: #fff;
+	-webkit-transition: background-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
+}
+.button--moema.button--inverted {
+	background: #ECEFF1;
+	color: #37474f;
+}
+.button--moema::before {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	bottom: -20px;
+	right: -20px;
+	background: inherit;
+	border-radius: 50px;
+	z-index: -1;
+	opacity: 0.4;
+	-webkit-transform: scale3d(0.8, 0.5, 1);
+	transform: scale3d(0.8, 0.5, 1);
+}
+.button--moema:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #ECEFF1;
+	background-color: #3f51b5;
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+.button--moema.button--inverted:hover {
+	color: #ECEFF1;
+	background-color: #7986cb;
+}
+.button--moema:hover::before {
+	-webkit-animation: anim-moema-2 0.3s 0.3s forwards;
+	animation: anim-moema-2 0.3s 0.3s forwards;
+}
+@-webkit-keyframes anim-moema-1 {
+	60% {
+		-webkit-transform: scale3d(0.8, 0.8, 1);
+		transform: scale3d(0.8, 0.8, 1);
+	}
+	85% {
+		-webkit-transform: scale3d(1.1, 1.1, 1);
+		transform: scale3d(1.1, 1.1, 1);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+@keyframes anim-moema-1 {
+	60% {
+		-webkit-transform: scale3d(0.8, 0.8, 1);
+		transform: scale3d(0.8, 0.8, 1);
+	}
+	85% {
+		-webkit-transform: scale3d(1.1, 1.1, 1);
+		transform: scale3d(1.1, 1.1, 1);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+@-webkit-keyframes anim-moema-2 {
+	to {
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+@keyframes anim-moema-2 {
+	to {
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+/* Isi */
+.button--isi {
+	padding: 1.2em 2em;
+	color: #fff;
+	background: #7986cb;
+	overflow: hidden;
+}
+.button--isi::before {
+	content: '';
+	z-index: -1;
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	margin: -15px 0 0 1px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #3f51b5;
+	-webkit-transform-origin: 100% 50%;
+	transform-origin: 100% 50%;
+	-webkit-transform: scale3d(1, 2, 1);
+	transform: scale3d(1, 2, 1);
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.9,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.9,1);
+}
+.button--isi .button__icon {
+	vertical-align: middle;
+}
+.button--isi > span {
+	vertical-align: middle;
+	padding-left: 0.75em;
+}
+.button--isi:hover::before {
+	-webkit-transform: scale3d(9, 9, 1);
+	transform: scale3d(9, 9, 1);
+}
+
+/* Aylen */
+.button.button--aylen {
+	background: #fff;
+	color: #37474f;
+	overflow: hidden;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+.button--aylen.button--inverted {
+	background: none;
+	color: #fff;
+}
+.button--aylen::before,
+.button--aylen::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 100%;
+	left: 0;
+	z-index: -1;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--aylen::before {
+	background: #7986cb;
+}
+.button--aylen::after {
+	background: #3f51b5;
+}
+.button--aylen:hover {
+	color: #fff;
+}
+.button--aylen:hover::before,
+.button--aylen:hover::after {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.button--aylen:hover::after {
+	-webkit-transition-delay: 0.175s;
+	transition-delay: 0.175s;
+}
+
+/* Saqui */
+.button.button--saqui {
+	overflow: hidden;
+	color: #fff;
+	background: #37474f;
+	-webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+	transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+.button--saqui.button--inverted {
+	background: #fff;
+	color: #37474f;
+}
+.button--saqui::after {
+	content: attr(data-text);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 1em 2em;
+	color: #37474f;
+	-webkit-transform-origin: -25% 50%;
+	transform-origin: -25% 50%;
+	-webkit-transform: rotate3d(0, 0, 1, 45deg);
+	transform: rotate3d(0, 0, 1, 45deg);
+	-webkit-transition: -webkit-transform 0.3s ease-in;
+	transition: transform 0.3s ease-in;
+}
+.button--saqui.button--inverted::after {
+	color: #fff;
+}
+.button--saqui:hover::after,
+.button--saqui:hover {
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+}
+.button--saqui:hover {
+	background-color: #7986cb;
+	color: #7986cb;
+}
+.button--saqui.button--inverted:hover {
+	background-color: #3f51b5;
+	color: #3f51b5;
+}
+.button--saqui:hover::after {
+	-webkit-transform: rotate3d(0, 0, 1, 0deg);
+	transform: rotate3d(0, 0, 1, 0deg);
+}
+
+/* Wapasha */
+.button.button--wapasha {
+	background: #37474f;
+	color: #fff;
+	-webkit-transition: background-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
+}
+.button--wapasha.button--inverted {
+	background: #fff;
+	color: #37474f;
+}
+.button--wapasha::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #3f51b5;
+	z-index: -1;
+	border-radius: inherit;
+	opacity: 0;
+	-webkit-transform: scale3d(0.6, 0.6, 1);
+	transform: scale3d(0.6, 0.6, 1);
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--wapasha.button--inverted::before {
+	border-color: #7986cb;
+}
+.button--wapasha:hover {
+	background-color: #fff;
+	color: #3f51b5;
+}
+.button--wapasha.button--inverted:hover {
+	background-color: #37474f;
+	color: #7986cb;
+}
+.button--wapasha:hover::before {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+	opacity: 1;
+}
+
+/* Nina */
+.button--nina {
+	padding: 0 2em;
+	background: #7986cb;
+	color: #fff;
+	overflow: hidden;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+.button--nina.button--inverted {
+	background: #fff;
+	color: #7986cb;
+}
+.button--nina > span {
+	display: inline-block;
+	padding: 1em 0;
+	opacity: 0;
+	color: #fff;
+	-webkit-transform: translate3d(0, -10px, 0);
+	transform: translate3d(0, -10px, 0);
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--nina::before {
+	content: attr(data-text);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 1em 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--nina:hover {
+	background-color: #3f51b5;
+}
+.button--nina:hover::before {
+	opacity: 0;
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.button--nina:hover > span {
+	opacity: 1;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--nina:hover > span:nth-child(1) {
+	-webkit-transition-delay: 0.045s;
+	transition-delay: 0.045s;
+}
+.button--nina:hover > span:nth-child(2) {
+	-webkit-transition-delay: 0.09s;
+	transition-delay: 0.09s;
+}
+.button--nina:hover > span:nth-child(3) {
+	-webkit-transition-delay: 0.135s;
+	transition-delay: 0.135s;
+}
+.button--nina:hover > span:nth-child(4) {
+	-webkit-transition-delay: 0.18s;
+	transition-delay: 0.18s;
+}
+.button--nina:hover > span:nth-child(5) {
+	-webkit-transition-delay: 0.225s;
+	transition-delay: 0.225s;
+}
+.button--nina:hover > span:nth-child(6) {
+	-webkit-transition-delay: 0.27s;
+	transition-delay: 0.27s;
+}
+.button--nina:hover > span:nth-child(7) {
+	-webkit-transition-delay: 0.315s;
+	transition-delay: 0.315s;
+}
+.button--nina:hover > span:nth-child(8) {
+	-webkit-transition-delay: 0.36s;
+	transition-delay: 0.36s;
+}
+.button--nina:hover > span:nth-child(9) {
+	-webkit-transition-delay: 0.405s;
+	transition-delay: 0.405s;
+}
+.button--nina:hover > span:nth-child(10) {
+	-webkit-transition-delay: 0.45s;
+	transition-delay: 0.45s;
+}
+
+/* Nanuk */
+.button--nanuk {
+	padding: 0 2em;
+	overflow: hidden;
+	background: #7986cb;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+.button--nanuk.button--inverted {
+	background: #fff;
+	color: #7986cb;
+}
+.button--nanuk > span {
+	display: inline-block;
+	padding: 1em 0;
+}
+.button--nanuk:hover {
+	background-color: #3f51b5;
+}
+.button--nanuk:hover > span:nth-child(odd) {
+	-webkit-animation: anim-nanuk-1 0.5s forwards;
+	animation: anim-nanuk-1 0.5s forwards;
+}
+.button--nanuk:hover > span:nth-child(even) {
+	-webkit-animation: anim-nanuk-2 0.5s forwards;
+	animation: anim-nanuk-2 0.5s forwards;
+}
+.button--nanuk:hover > span:nth-child(odd),
+.button--nanuk:hover > span:nth-child(even) {
+	-webkit-animation-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-animation-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+@-webkit-keyframes anim-nanuk-1 {
+	0%,
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	49% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+	}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+		color: inherit;
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+		color: #fff;
+	}
+	100% {
+		color: #fff;
+	}
+}
+@keyframes anim-nanuk-1 {
+	0%,
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	49% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+	}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+		color: inherit;
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+		color: #fff;
+	}
+	100% {
+		color: #fff;
+	}
+}
+@-webkit-keyframes anim-nanuk-2 {
+	0%,
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	49% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+		color: inherit;
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+		color: #fff;
+	}
+	100% {
+		color: #fff;
+	}
+}
+@keyframes anim-nanuk-2 {
+	0%,
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	49% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+		color: inherit;
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+		color: #fff;
+	}
+	100% {
+		color: #fff;
+	}
+}
+.button--nanuk:hover > span:nth-child(1) {
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+}
+.button--nanuk:hover > span:nth-child(2) {
+	-webkit-animation-delay: 0.05s;
+	animation-delay: 0.05s;
+}
+.button--nanuk:hover > span:nth-child(3) {
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+.button--nanuk:hover > span:nth-child(4) {
+	-webkit-animation-delay: 0.15s;
+	animation-delay: 0.15s;
+}
+.button--nanuk:hover > span:nth-child(5) {
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+.button--nanuk:hover > span:nth-child(6) {
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+.button--nanuk:hover > span:nth-child(7) {
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
+}
+.button--nanuk:hover > span:nth-child(8) {
+	-webkit-animation-delay: 0.35s;
+	animation-delay: 0.35s;
+}
+.button--nanuk:hover > span:nth-child(9) {
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
+}
+.button--nanuk:hover > span:nth-child(10) {
+	-webkit-animation-delay: 0.45s;
+	animation-delay: 0.45s;
+}
+.button--nanuk:hover > span:nth-child(11) {
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+}
+
+/* Antiman */
+.button--antiman {
+	background: none;
+	border: none;
+	height: 60px;
+}
+.button--antiman.button--inverted,
+.button--antiman.button--inverted-alt {
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--antiman > span {
+	padding-left: 0.35em;
+}
+.button--antiman::before,
+.button--antiman::after {
+	content: '';
+	z-index: -1;
+	border-radius: inherit;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--antiman::before {
+	border: 2px solid #37474f;
+	opacity: 0;
+	-webkit-transform: scale3d(1.2, 1.2, 1);
+	transform: scale3d(1.2, 1.2, 1);
+}
+.button--antiman.button--border-thin::before {
+	border-width: 1px;
+}
+.button--antiman.button--border-medium::before {
+	border-width: 2px;
+}
+.button--antiman.button--border-thick::before {
+	border-width: 3px;
+}
+.button--antiman.button--inverted::before {
+	border-color: #7986cb;
+}
+.button--antiman.button--inverted-alt::before {
+	border-color: #3f51b5;
+}
+.button--antiman::after {
+	background: #fff;
+}
+.button--antiman.button--inverted::after {
+	background: #7986cb;
+}
+.button--antiman.button--inverted-alt::after {
+	background: #3f51b5;
+}
+.button--antiman.button--inverted:hover {
+	color: #7986cb;
+}
+.button--antiman.button--inverted-alt:hover {
+	color: #3f51b5;
+}
+.button--antiman:hover::before {
+	opacity: 1;
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+.button--antiman:hover::after {
+	opacity: 0;
+	-webkit-transform: scale3d(0.8, 0.8, 1);
+	transform: scale3d(0.8, 0.8, 1);
+}
+
+/* Itzel */
+.button--itzel {
+	border: none;
+	padding: 0px;
+	overflow: hidden;
+	width: 255px;
+}
+.button--itzel::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 2px solid;
+	border-radius: inherit;
+	-webkit-clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 35% 60%, 65% 60%, 65% 100%, 100% 100%, 100% 0%);
+	clip-path: url(../index.html#clipBox);
+	-webkit-transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+	transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+}
+
+.button--itzel.button--border-thin::before {
+	border: 1px solid;
+	-webkit-transform: translate3d(0, 100%, 0) translate3d(0, -1px, 0);
+	transform: translate3d(0, 100%, 0) translate3d(0, -1px, 0);
+}
+.button--itzel.button--border-thick::before {
+	border: 3px solid;
+	-webkit-transform: translate3d(0, 100%, 0) translate3d(0, -3px, 0);
+	transform: translate3d(0, 100%, 0) translate3d(0, -3px, 0);
+}
+
+.button--itzel::before,
+.button--itzel .button__icon {
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--itzel .button__icon {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	padding: 20px;
+	font-size: 20px;
+	-webkit-transform: translate3d(-50%, 0, 0);
+	transform: translate3d(-50%, 0, 0);
+}
+.button--itzel > span {
+	display: block;
+	padding: 20px;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+.button--itzel:hover::before {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--itzel:hover .button__icon {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+	-webkit-transform: translate3d(-50%, -100%, 0);
+	transform: translate3d(-50%, -100%, 0);
+}
+.button--itzel:hover > span {
+	opacity: 0;
+	-webkit-transform: translate3d(0, -50%, 0);
+	transform: translate3d(0, -50%, 0);
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+/* Naira */
+.button--naira {
+	padding: 0;
+	overflow: hidden;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+.button--naira::before {
+	content: '';
+	position: absolute;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: #37474f;
+	top: -50%;
+	z-index: -1;
+	-webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -10deg);
+	transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -10deg);
+}
+.button--naira.button--inverted::before {
+	background: #7986cb;
+}
+.button--naira-up::before {
+	-webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 10deg);
+	transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 10deg);
+}
+.button--naira > span {
+	display: block;
+}
+.button--naira .button__icon {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	left: 0;
+	color: #fff;
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+}
+.button--naira-up .button__icon {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.button--naira > span,
+.button--naira .button__icon {
+	padding: 1em 2em;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--naira:hover::before {
+	-webkit-animation: anim-naira-1 0.3s forwards ease-in;
+	animation: anim-naira-1 0.3s forwards ease-in;
+}
+.button--naira-up:hover::before {
+	-webkit-animation: anim-naira-2 0.3s forwards ease-in;
+	animation: anim-naira-2 0.3s forwards ease-in;
+}
+@-webkit-keyframes anim-naira-1 {
+	50% {
+		-webkit-transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+		transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+		transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+	}
+}
+@keyframes anim-naira-1 {
+	50% {
+		-webkit-transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+		transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+		transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+	}
+}
+@-webkit-keyframes anim-naira-2 {
+	50% {
+		-webkit-transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+		transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+		transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+	}
+}
+@keyframes anim-naira-2 {
+	50% {
+		-webkit-transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+		transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+		transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+	}
+}
+.button--naira:hover {
+	background-color: #37474f;
+	-webkit-transition: background-color 0s 0.3s;
+	transition: background-color 0s 0.3s;
+}
+.button--naira.button--inverted:hover {
+	background-color: #7986cb;
+}
+.button--naira:hover .button__icon {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--naira:hover > span {
+	opacity: 0;
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.button--naira-up:hover > span {
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+}
+
+/* Quidel */
+.button--quidel {
+	background: #7986cb;
+	color: #7986cb;
+	overflow: hidden;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--quidel.button--inverted {
+	background: #fff;
+	color: #fff;
+}
+.button--quidel::before,
+.button--quidel::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	border-radius: inherit;
+}
+.button--quidel::after {
+	top: 2px;
+	left: 2px;
+	right: 2px;
+	bottom: 2px;
+	background: #fff;
+}
+.button--quidel.button--inverted::after {
+	background: #37474f;
+}
+.button--quidel::before {
+	background: #37474f;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--quidel.button--inverted::before {
+	background: #7986cb;
+}
+.button--round-s.button--quidel::after {
+	border-radius: 3px;
+}
+.button--round-m.button--quidel::after {
+	border-radius: 13px;
+}
+.button--round-l.button--quidel::after {
+	border-radius: 40px;
+}
+.button--quidel > span {
+	padding-left: 0.35em;
+}
+.button--quidel:hover {
+	color: #37474f;
+}
+.button--quidel.button--inverted:hover {
+	color: #7986cb;
+}
+.button--quidel:hover::before {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+/* Sacnite */
+.button.button--sacnite {
+	width: 70px;
+	height: 70px;
+	min-width: 0;
+	padding: 0;
+	color: #fff;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+.button--scanite.button--round-l {
+	border-radius: 50%;
+}
+.button--sacnite.button--inverted {
+	color: #37474f;
+}
+.button--sacnite::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	z-index: -1;
+	box-shadow: inset 0 0 0 35px #37474f;
+	-webkit-transform: scale3d(0.9, 0.9, 1);
+	transform: scale3d(0.9, 0.9, 1);
+	-webkit-transition: box-shadow 0.3s, -webkit-transform 0.3;
+	transition: box-shadow 0.3s, transform 0.3s;
+}
+.button--sacnite.button--inverted::before {
+	box-shadow: inset 0 0 0 35px #fff;
+}
+.button--sacnite .button__icon {
+	font-size: 22px;
+	width: 22px;
+}
+.button--sacnite > span {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.button--sacnite:hover {
+	color: #37474f;
+}
+.button--sacnite.button--inverted:hover {
+	color: #fff;
+}
+.button--sacnite:hover::before {
+	box-shadow: inset 0 0 0 2px #37474f;
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+.button--sacnite.button--inverted:hover::before {
+	box-shadow: inset 0 0 0 2px #fff;
+}
+
+/* Shikoba */
+.button.button--shikoba {
+	padding: 1em 30px 1em 50px;
+	overflow: hidden;
+	background: #fff;
+	color: #37474f;
+	border-color: #37474f;
+	-webkit-transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+.button--shikoba.button--inverted {
+	color: #fff;
+	background: #7986cb;
+}
+.button--shikoba > span {
+	display: inline-block;
+	-webkit-transform: translate3d(-10px, 0, 0);
+	transform: translate3d(-10px, 0, 0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--shikoba .button__icon {
+	position: absolute;
+	left: 20px;
+	font-size: 18px;
+	-webkit-transform: translate3d(-40px, 2.5em, 0);
+	transform: translate3d(-40px, 2.5em, 0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--shikoba:hover .button__icon,
+.button--shikoba:hover > span {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.button--shikoba:hover {
+	background: #3f51b5;
+	border-color: #3f51b5;
+	color: #fff;
+}
