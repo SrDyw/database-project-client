@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import {AppContextProvider, AppContext} from './components/AppContext'
+import Testing from './components/Testing/Testing'
 
 export default function App() {
     // const [data, setData] = useState([{}]);
@@ -14,8 +15,8 @@ export default function App() {
 
     // console.log(x);
     return (
-        <div>
-            Proyecto BD
-        </div>
+        <>
+            <Testing/>
+        </>
     );
 }
