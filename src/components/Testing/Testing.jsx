@@ -9,10 +9,10 @@ const Testing = () => {
       </div>
       <div className="bottom-section">
         <div className="logo-profile">
-            Should be a pic
+            <h1>Should be a pic</h1>
         </div>
         <div className="name-section">
-            Some text example
+            <h1>Some text example</h1>
         </div>
       </div>
     </div>
