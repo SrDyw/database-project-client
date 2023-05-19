@@ -1,0 +1,46 @@
+.MainFrame {
+    width: 1440px;
+    height: 1024px;
+    overflow: hidden;
+}
+
+.logo-profile {
+    width: 315px;
+    height: 3150x;
+    border-radius: 50%;
+    background: #3d92c2;
+    box-shadow: 0 10px 35px black;
+    position: absolute;
+    top: 299px;
+    left: 562px;
+}
+
+.bottom-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+    background: #d9d9d9;
+}
+
+.first-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #256daf;
+}
+
+.logo-profile {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.name-section {
+    width: 687px;
+    height: 171px;
+    top: 594px;
+    left: 398px;
+    border-radius: 85.5px;
+}
