@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&family=Montserrat:wght@500;600&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+    --primary-color: #275160;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.2);
+    border-radius: 40px;
+    padding: 20px 80px;
+
+
+    margin: 110px 0px 350px;
+    width: 750px;
+}
+
+label {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Poppins";
+    color: #a1a1a1;
+    margin: 30px 30px 0;
+}
+
+.title {
+    margin: 15px 0 10px;
+    font-family: "Century Gothic";
+    font-size: 35px;
+    font-weight: 700;
+}
+
+input {
+    border: 3px solid transparent;
+    border-radius: 35px;
+    background-color: #ececec;
+    font-size: 17px;
+    font-weight: 500;
+    color: #666666;
+    width: 520px;
+    height: 55px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+button {
+    background-image: linear-gradient(45deg, #122a3b 0%, #275160 80%);
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    border: none;
+    padding: 15px 100px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-family: "Poppins";
+    cursor: pointer;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    /* -webkit-appearance: none; Safari and Chrome */
+    /* appearance: none; */
+}
+.radio-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.form-group {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label::before {
+    border-color: var(--primary-color);
+}
+
+input[type="radio"]:checked + label::after {
+    transform: translateY(-50%) scale(0.55);
+}
+
+label {
+    cursor: pointer;
+    position: relative;
+}
+
+label::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: -3rem;
+    transform: translateY(-50%);
+    transition: border-color 400ms ease;
+}
+
+label::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    top: 50%;
+    left: -3rem;
+    transform: translateY(-50%) scale(0);
+    transition: transform 400ms ease;
+}
+
+textarea {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 500px;
+    height: 100px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #ffffff #ffffff -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+}
+
+textarea:focus {
+    background: none repeat scroll 0 0 #ffffff;
+    outline-width: 0;
+}
+
+.lvl {
+    flex-direction: column;
+    flex-wrap: wrap;
+}
