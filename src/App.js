@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import {AppContextProvider, AppContext} from './components/AppContext'
 import Testing from "./components/Testing/Testing";
-
+import DesignerForm from './components/form/DesgForm'
+import EditorForm from './components/form/EditForm'
+import LevelDesignerForm from './components/form/LvlDesForm'
+import ProgrammerForm from './components/form/ProgForm'
 export default function App() {
     // const [data, setData] = useState([{}]);
     // const x = useContext(AppContext);
@@ -15,6 +18,6 @@ export default function App() {
 
     // console.log(x);
     return (
-        <Testing></Testing>
+        <EditorForm></EditorForm>
     );
 }

@@ -1,9 +1,18 @@
 import React from "react";
 import "./Form.css";
+import { createDesigner } from "../backend/petitions";
 
 const DesgForm = () => {
+    const formHandler = e => {
+        e.preventDefault()
+        const name = document.getElementById('nameInput').value;
+        const feature = document.getElementById('classInput').value;
+        const skills = document.getElementById('skillInput').value;
+
+        createDesigner({name, feature, skills});
+    }
     return (
-        <form action="">
+        <form action="" onSubmit={formHandler}>
             <h1 className="title">Diseñador</h1>
 
             {/* Input section  */}

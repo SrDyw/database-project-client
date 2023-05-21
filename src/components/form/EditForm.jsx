@@ -1,9 +1,20 @@
 import React from "react";
 import "./Form.css";
+import { createEditor } from "../backend/petitions";
 
 const EditForm = () => {
+    const formHandler = e => {
+        e.preventDefault()
+        const name = document.getElementById('nameInput').value;
+        const feature = document.getElementById('classInput').value;
+        const budget = document.getElementById('presInput').value;
+        const website = document.getElementById('webInput').value;
+
+        createEditor({name, feature, budget, website});
+    }
+
     return (
-        <form action="">
+        <form action="" onSubmit={formHandler}>
             <h1 className="title">Editor</h1>
 
             {/* Input section  */}
