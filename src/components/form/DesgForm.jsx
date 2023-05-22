@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Form.css";
 import { createDesigner, reportOperation } from "../backend/petitions";
+import { AppContext } from "../AppContext";
 
 const DesgForm = () => {
+    const { setWin } = useContext(AppContext)
     const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
@@ -14,6 +16,7 @@ const DesgForm = () => {
     }
     return (
         <form action="" onSubmit={formHandler}>
+            <div className="close" onClick={() => setWin('')}></div>
             <h1 className="title">Diseñador</h1>
 
             {/* Input section  */}

@@ -1,10 +1,29 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { AppContext } from "../AppContext";
+import { create, reportOperation } from "../backend/petitions";
 
 const GameForm = () => {
-  return (
-    <form action="">
-        <h1 className='title'>Juego</h1>
-        {/* Input section  */}
+    const { setWin } = useContext(AppContext)
+
+    const formHandler = async(e) => {
+        e.preventDefault();
+        const name = document.getElementById("nameInput").value;
+        const release_date = document.getElementById("date-input").value;
+        const gender = document.getElementById("gender-input").value;
+        const dimension = document.getElementById("dim-input").value;
+        const id_industry = document.getElementById("id_industry-input").value;
+
+        const result = await create({ name, release_date, gender, dimension, id_industry }, 'game');
+        if (reportOperation(result) === 'succesfuly') {
+            // setWin('')
+        }
+    };
+
+    return (
+        <form action="" onSubmit={formHandler}>
+            <h1 className="title">Juego</h1>
+            {/* Input section  */}
+            <div className="close" onClick={() => setWin("")}></div>
             <div>
                 <label htmlFor="nameInput">Nombre:</label>
                 <input type="text" id="nameInput" />
@@ -29,8 +48,8 @@ const GameForm = () => {
             {/* END Input section  */}
 
             <button onSubmit={""}>Ingresar</button>
-    </form>
-  )
-}
+        </form>
+    );
+};
 
-export default GameForm
+export default GameForm;

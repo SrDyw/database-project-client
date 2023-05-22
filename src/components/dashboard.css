@@ -3,9 +3,14 @@
     width: 100%;
     height: 50px;
     background: linear-gradient(45deg, #275160 0%, #000000 80%);
+
+    display: grid;
+    grid-template-columns: .2fr 1fr;
+    top: 0;
 }
 
 ul {
+    /* background-color: green; */
     list-style: none;
     display: flex;
     justify-content: flex-end;
@@ -13,18 +18,19 @@ ul {
     margin: 0;
     padding: 0 10px;
     box-sizing: border-box;
-    height: 100%;
+    height: 50px;
     gap: 25px;
+    position: relative;
 }
 
 .n__element {
+    position: relative;
     background-color: rgb(72, 72, 131);
     color: white;
 
     cursor: pointer;
     width: 150px;
-    height: 20px;
-    padding: 20px 0;
+    padding: 10px 0;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -36,4 +42,176 @@ ul {
     background-color: white;
     color: black;
     
+}
+
+.app_name {
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: #75b9d1;
+    height: 50px
+    ;
+
+}
+
+.app_name span:nth-child(2) {
+    margin: 0;
+    color: white;
+}
+
+.selector {
+    width: 500px;
+    height: 500px;
+    background: white;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 0 20px #07284469;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding: 10px 20px;
+}
+
+
+.list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 90;
+    position: relative;
+    /* background-color: #60819e69; */
+    border-radius: 20px;
+}
+
+.element__list {
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    transition: .2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.element__list:hover {
+    background-color: #07284469;
+    color: white;
+    transform: scale(1.25);
+}
+
+.selector_button {
+    background-image: linear-gradient(45deg, #122a3b 0%, #275160 80%);
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+    font-family: "Poppins";
+    cursor: pointer;
+    transition: .2s;
+}
+
+.selector_button:hover {
+    transform: scale(1.15);
+}
+
+.select {
+    position: fixed;
+    
+}
+
+.shadow-1 {
+    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+}
+
+.center_element {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+}
+
+.title {
+    position: relative;
+    text-align: center;
+}
+
+.table_data {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #122a3b 0%, #275160 80%);
+    width: 98%;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow-y: scroll;
+}
+
+.table_data::-webkit-scrollbar {
+    width: 10px;
+    background-color: #000000;
+}
+
+.table_data::-webkit-scrollbar-thumb {
+    background: linear-gradient(#00000000, #00c3ff);
+}
+
+table {
+    position: absolute;
+    top: 10px;
+    width: 80%;
+    table-layout: fixed;
+    border-collapse: collapse;    
+}
+
+th {
+    text-align: left;
+}
+
+tr {
+    height: 40px;
+    border: 1px solid #09c6ff2f;
+    transition: .2s;
+}
+
+.element_row:hover {
+    background-color:#09c6ff2f;
+    height: 50px;
+    cursor: pointer;
+}
+
+
+thead {
+    outline: none;
+    background-color: #0051ff2d;
+    height: 40px;
+}
+
+td {
+    overflow: hidden;
+    padding: 10px;
 }

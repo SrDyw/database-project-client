@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Form.css";
 import { createProgrammer, reportOperation } from "../backend/petitions";
+import { AppContext } from "../AppContext";
 
 const Programmer = () => {
     const [grade, setGrade] = useState("junnior");
+    const {setWin} = useContext(AppContext);
 
     const formHandler = async(e) => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
-        const lenguage = document.getElementById("langInput").value;
+        const lenguage = document.getElementById("lanInput").value;
 
         const result = await createProgrammer({ name, feature, grade, lenguage });
-        reportOperation(result);
+        if (reportOperation(result) === 'succesfuly') {
+            setWin('')
+        }
     };
     return (
         <form action="" onSubmit={formHandler} method="post">
+            <div className="close" onClick={() => setWin('')}></div>
             <h1 className="title">Programador</h1>
 
             {/* Input section  */}
@@ -25,7 +30,7 @@ const Programmer = () => {
             </div>
             <div>
                 <label htmlFor="classInput">Clasificación:</label>
-                <input type="text" id="classInput" />
+                <input type="number" id="classInput" />
             </div>
             <div>
                 <label htmlFor="gradeInput">Grado:</label>
@@ -69,21 +74,9 @@ const Programmer = () => {
                 </div>
             </div>
             <div>
-                <label htmlFor="langInput">Lenguaje(s):</label>
-                <textarea
-                    placeholder="Ejemplo: Javascript, C#, Java..."
-                    rows="20"
-                    name="comment[text]"
-                    id="langInput"
-                    cols="40"
-                    className="ui-autocomplete-input"
-                    autoComplete="off"
-                    role="textbox"
-                    aria-autocomplete="list"
-                    aria-haspopup="true"
-                ></textarea>
+                <label htmlFor="lanInput">Lenguages:</label>
+                <input type="text" id="lanInput" />
             </div>
-
             {/* END Input section  */}
 
             <button>Ingresar</button>

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Form.css";
 import { createLevelDesigner, reportOperation } from "../backend/petitions";
-import OperationResult from './OperationResult'
+import OperationResult from "./OperationResult";
+import { AppContext } from "../AppContext";
 
 const LvlDesForm = () => {
     const [speciality, setSpeciality] = useState("2D");
     const [resultOperation, setResultOperation] = useState("waiting");
-
-    const formHandler = async(e) => {
+    const {setWin} = useContext(AppContext)
+    
+    const formHandler = async (e) => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
@@ -20,6 +22,7 @@ const LvlDesForm = () => {
     return (
         <div className="createInput">
             <form action="" onSubmit={formHandler}>
+                <div className="close" onClick={() => setWin("")}></div>
                 <h1 className="title">Diseñador de niveles</h1>
 
                 {/* Input section  */}

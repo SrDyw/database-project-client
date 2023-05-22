@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Form.css'
+import { AppContext } from "../AppContext";
+import { create, createIndustry, reportOperation } from "../backend/petitions";
 
 const IndustryForm = () => {
+    const { setWin } = useContext(AppContext)
+
+    const formHandler = async e => {
+        e.preventDefault();
+        const name_industry = document.getElementById('nameInput').value;
+        const feature = document.getElementById('features-input').value;
+        
+        const result = await create({name_industry, feature}, 'industry');
+
+        reportOperation(result);
+    }
+
     return (
-        <form action="">
+        <form action="" onSubmit={formHandler}>
+            <div className="close" onClick={() => setWin('')}></div>
             <h1 className="title">Industria</h1>
             {/* Input section  */}
             <div>
@@ -17,7 +32,7 @@ const IndustryForm = () => {
             </div>
             {/* END Input section  */}
 
-            <button onSubmit={""}>Ingresar</button>
+            <button>Ingresar</button>
         </form>
     );
 };

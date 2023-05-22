@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./dashboard.css";
+import { AppContext } from './AppContext';
 
 export default function Navbar() {
+  const {setWin, setQuery} = useContext(AppContext)
+  const createHandler = () => {
+    setQuery('create');
+    setWin('selector');
+  }
+  const consultHandler = () => {
+    setQuery('select');
+    setWin('selector');
+  }
+
+  const removeHandler = () => {
+    setQuery('delete');
+    setWin('selector');
+  }
   return (
     <div className='navbar'>
         <div>
-          <h1 className='product_name'>Player's Portal</h1>
+          <h1 className='app_name'>
+            <span>Player's</span>
+            <span>Portal</span>
+          </h1>
         </div>
         <ul  className='n__elements'>
-          <li className='n__element'>
-            <div onClick={console.log("Yamatte")}>Crear</div>
+          <li className='n__element' onClick={createHandler}>
+            <div>Crear</div>
+          </li>
+          <li className='n__element'onClick={consultHandler}>
+            <div>Consultar</div>
           </li>
           <li className='n__element'>
-            <div onClick={console.log("Yamatte")}>Consultar</div>
+            <div>Actualizar</div>
           </li>
-          <li className='n__element'>
-            <div onClick={console.log("Yamatte")}>Actualizar</div>
-          </li>
-          <li className='n__element'>
-            <div onClick={console.log("Yamatte")}>Remover</div>
+          <li className='n__element' onClick={removeHandler}>
+            <div>Remover</div>
           </li>
         </ul>
     </div>

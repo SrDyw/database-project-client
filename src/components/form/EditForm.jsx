@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Form.css";
 import { createEditor, reportOperation } from "../backend/petitions";
+import { AppContext } from "../AppContext";
 
 const EditForm = () => {
+    const { setWin } = useContext(AppContext)
+
     const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
@@ -16,6 +19,7 @@ const EditForm = () => {
 
     return (
         <form action="" onSubmit={formHandler}>
+            <div className="close" onClick={() => setWin('')}></div>
             <h1 className="title">Editor</h1>
 
             {/* Input section  */}
