@@ -19,7 +19,7 @@ form {
     padding: 20px 80px;
 
 
-    margin: 110px 0px 350px;
+    margin: 0;
     width: 450px;
 }
 
@@ -166,4 +166,13 @@ textarea:focus {
 .lvl {
     /* flex-direction: column; */
     flex-wrap: wrap;
+}
+
+
+.createInput {
+}
+.operation_message {
+    width: 100%;
+    margin: 0;
+    margin-block: 0;
 }

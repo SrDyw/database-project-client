@@ -1,16 +1,17 @@
 import React from "react";
 import "./Form.css";
-import { createEditor } from "../backend/petitions";
+import { createEditor, reportOperation } from "../backend/petitions";
 
 const EditForm = () => {
-    const formHandler = e => {
+    const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
         const feature = document.getElementById('classInput').value;
         const budget = document.getElementById('presInput').value;
         const website = document.getElementById('webInput').value;
 
-        createEditor({name, feature, budget, website});
+        const result = await createEditor({name, feature, budget, website});
+        reportOperation(result);
     }
 
     return (

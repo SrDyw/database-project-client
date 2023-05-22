@@ -1,34 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Form.css";
+import { createLevelDesigner, reportOperation } from "../backend/petitions";
+import OperationResult from './OperationResult'
 
 const LvlDesForm = () => {
+    const [speciality, setSpeciality] = useState("2D");
+    const [resultOperation, setResultOperation] = useState("waiting");
+
+    const formHandler = async(e) => {
+        e.preventDefault();
+        const name = document.getElementById("nameInput").value;
+        const feature = document.getElementById("classInput").value;
+
+        const result = await createLevelDesigner({ name, feature, speciality });
+
+        reportOperation(result);
+    };
+
     return (
-        <form action="">
-            <h1 className="title">Diseñador de niveles</h1>
+        <div className="createInput">
+            <form action="" onSubmit={formHandler}>
+                <h1 className="title">Diseñador de niveles</h1>
 
-            {/* Input section  */}
-            <div>
-                <label htmlFor="nameInput">Nombre:</label>
-                <input type="text" id="nameInput" />
-            </div>
-            <div>
-                <label htmlFor="classInput">Clasificación:</label>
-                <input type="text" id="classInput" />
-            </div>
-            <div className="radio-buttons">
-                <div className="form-group">
-                    <input type="radio" id="2D" name="typeDesign" checked />
-                    <label htmlFor="2D">2D</label>
+                {/* Input section  */}
+                <div>
+                    <label htmlFor="nameInput">Nombre:</label>
+                    <input type="text" id="nameInput" />
                 </div>
-                <div className="form-group">
-                    <input type="radio" id="3D" name="typeDesign" />
-                    <label htmlFor="3D">3D</label>
+                <div>
+                    <label htmlFor="classInput">Clasificación:</label>
+                    <input type="text" id="classInput" />
                 </div>
-            </div>
-            {/* END Input section  */}
+                <div className="radio-buttons">
+                    <div className="form-group">
+                        <input
+                            type="radio"
+                            id="2D"
+                            name="typeDesign"
+                            onClick={() => setSpeciality("2D")}
+                        />
+                        <label htmlFor="2D">2D</label>
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="radio"
+                            id="3D"
+                            name="typeDesign"
+                            onClick={() => setSpeciality("3D")}
+                        />
+                        <label htmlFor="3D">3D</label>
+                    </div>
+                </div>
+                {/* END Input section  */}
 
-            <button onSubmit={""}>Ingresar</button>
-        </form>
+                <button>Ingresar</button>
+            </form>
+        </div>
     );
 };
 

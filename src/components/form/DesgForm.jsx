@@ -1,15 +1,16 @@
 import React from "react";
 import "./Form.css";
-import { createDesigner } from "../backend/petitions";
+import { createDesigner, reportOperation } from "../backend/petitions";
 
 const DesgForm = () => {
-    const formHandler = e => {
+    const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
         const feature = document.getElementById('classInput').value;
         const skills = document.getElementById('skillInput').value;
 
-        createDesigner({name, feature, skills});
+        const result = await createDesigner({name, feature, skills});
+        reportOperation(result);
     }
     return (
         <form action="" onSubmit={formHandler}>

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Form.css";
-import { createProgrammer } from "../backend/petitions";
+import { createProgrammer, reportOperation } from "../backend/petitions";
 
 const Programmer = () => {
     const [grade, setGrade] = useState("junnior");
 
-    const formHandler = (e) => {
+    const formHandler = async(e) => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
         const lenguage = document.getElementById("langInput").value;
 
-        createProgrammer({ name, feature, grade, lenguage });
+        const result = await createProgrammer({ name, feature, grade, lenguage });
+        reportOperation(result);
     };
     return (
         <form action="" onSubmit={formHandler} method="post">

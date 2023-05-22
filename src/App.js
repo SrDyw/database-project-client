@@ -4,6 +4,7 @@ import Testing from "./components/Testing/Testing";
 import DesignerForm from './components/form/DesgForm'
 import EditorForm from './components/form/EditForm'
 import LevelDesignerForm from './components/form/LvlDesForm'
+import Dashboard from "./components/Dashboard";
 import ProgrammerForm from './components/form/ProgForm'
 export default function App() {
     // const [data, setData] = useState([{}]);
@@ -18,6 +19,6 @@ export default function App() {
 
     // console.log(x);
     return (
-        <EditorForm></EditorForm>
+        <Dashboard></Dashboard>
     );
 }
