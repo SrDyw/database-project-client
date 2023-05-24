@@ -17,6 +17,11 @@ export default function Navbar() {
     setQuery('delete');
     setWin('selector');
   }
+
+  const updateHandler = () => {
+    setQuery('update');
+    setWin('selector.update');
+  }
   return (
     <div className='navbar'>
         <div>
@@ -32,9 +37,9 @@ export default function Navbar() {
           <li className='n__element'onClick={consultHandler}>
             <div>Consultar</div>
           </li>
-          <li className='n__element'>
+          {/* <li className='n__element' onClick={updateHandler}>
             <div>Actualizar</div>
-          </li>
+          </li> */}
           <li className='n__element' onClick={removeHandler}>
             <div>Remover</div>
           </li>

@@ -1,36 +1,73 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Form.css";
-import { createProgrammer, reportOperation } from "../backend/petitions";
+import {
+    createProgrammer,
+    reportOperation,
+    update,
+} from "../backend/petitions";
 import { AppContext } from "../AppContext";
 
 const Programmer = () => {
     const [grade, setGrade] = useState("junnior");
-    const {setWin} = useContext(AppContext);
+    const { setWin, query, queryData } = useContext(AppContext);
 
-    const formHandler = async(e) => {
+    let [data] = queryData;
+    let len = "";
+    if (query === "update") {
+
+        data.lenguages.map((l, i) => {
+            if (i < data.lenguages.length - 1) len += l + ", ";
+            else len += l;
+        });
+    } else data = { name: '', feature: 0}
+    
+    const formHandler = async (e) => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
         const lenguage = document.getElementById("lanInput").value;
 
-        const result = await createProgrammer({ name, feature, grade, lenguage });
-        if (reportOperation(result) === 'succesfuly') {
-            setWin('')
+        let result;
+
+        if (query === "create") {
+            result = await createProgrammer({ name, feature, grade, lenguage });
         }
+        if (query === "update") {
+            const data = { name, feature, grade, lenguage };
+            // console.log(data);
+            result = await update(
+                "programmer",
+                data,
+                queryData[0].id
+            );
+            
+        }
+
+        // if (reportOperation(result) === "succesfuly") {
+        //     setWin("");
+        // }
     };
     return (
         <form action="" onSubmit={formHandler} method="post">
-            <div className="close" onClick={() => setWin('')}></div>
+            <div className="close" onClick={() => setWin("")}></div>
             <h1 className="title">Programador</h1>
 
             {/* Input section  */}
             <div>
                 <label htmlFor="nameInput">Nombre:</label>
-                <input type="text" id="nameInput" />
+                <input
+                    type="text"
+                    id="nameInput"
+                    defaultValue={data.name || ""}
+                />
             </div>
             <div>
                 <label htmlFor="classInput">Clasificación:</label>
-                <input type="number" id="classInput" />
+                <input
+                    type="number"
+                    id="classInput"
+                    defaultValue={data.feature || ''}
+                />
             </div>
             <div>
                 <label htmlFor="gradeInput">Grado:</label>
@@ -75,7 +112,7 @@ const Programmer = () => {
             </div>
             <div>
                 <label htmlFor="lanInput">Lenguages:</label>
-                <input type="text" id="lanInput" />
+                <input type="text" id="lanInput" defaultValue={len} />
             </div>
             {/* END Input section  */}
 

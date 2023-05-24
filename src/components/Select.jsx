@@ -22,6 +22,9 @@ export default function Select() {
                 lvds: "leveldesigners",
                 inc: "industries",
                 user: "users",
+                user: "users",
+                revw: "reviews"
+
             };
             const select_result = await select(table_dicc[t], id);
 
@@ -43,7 +46,9 @@ export default function Select() {
                 user: "user",
             };
             const select_result = await deleteQuery(table_dicc[t], id);
-            if (select_result !== "error") {
+            console.log(
+                select_result)
+            if (select_result.message === "succesfuly") {
                 // setQueryData(select_result);
                 setWin("");
                 setCurrTable(table_dicc[t]);

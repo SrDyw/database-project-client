@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './dashboard.css'
 import { AppContext } from './AppContext'
 
-export default function Selector() {
+export default function SelectorUpdate() {
   const {setWin, query} = useContext(AppContext)
 
   const cancelHandler = () => {
@@ -10,7 +10,7 @@ export default function Selector() {
   }
 
   const actionHandler = (tag) => {
-    if (query === 'create') {
+    if (query === 'create' || query === 'update') {
       setWin(`form.${tag}`);
     }
     if (query === 'select' || query === 'delete') {
@@ -45,9 +45,6 @@ export default function Selector() {
         </li>
         <li className='element__list' onClick={() => actionHandler('user')}>
           Usuarios
-        </li>
-        <li className='element__list' onClick={() => actionHandler('revw')}>
-          Reseñas
         </li>
       </ul>
     </div>

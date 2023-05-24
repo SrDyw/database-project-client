@@ -1,4 +1,5 @@
 import { preferences } from "../config/preferences.config";
+import { Pool } from "pg";
 
 //#region CREATE
 // ** CREATE ==================================
@@ -86,6 +87,7 @@ export const createLevelDesigner = async ({ name, feature, speciality }) => {
 export const create = async (data, entitie) => {
     const url = `${preferences.server.url}/c${entitie}`;
 
+    console.log(data);
     return fetch(url, {
         method: "POST",
         headers: {
@@ -94,7 +96,7 @@ export const create = async (data, entitie) => {
         body: JSON.stringify(data),
     })
         .then((response) => response.json())
-        .catch((e) => 'error');
+        .catch((e) => "error");
 };
 
 export const createIndustry = async ({ name, feature }) => {
@@ -140,12 +142,62 @@ export const deleteQuery = async (table, id) => {
         "Content-Type": "application/json",
         body: JSON.stringify({}),
     })
-        .then((response) => "succesfuly")
+        .then((response) => response.json())
         .catch((e) => "error");
 };
 
 // ** CREATE ==================================
 //#endregion READ
+
+export const update = async (table, data, id) => {
+    const pool = new Pool({
+        user: "postgres",
+        host: "localhost",
+        database: "players_portal",
+        password: "pepe0102",
+        port: 3000,
+    });
+
+    pool.connect()
+        .then(() => console.log("Database connection established"))
+        .catch((err) =>
+            console.error("Error connecting to database\n", err.stack)
+        );
+
+    const url = `${preferences.server.url}/u${table}/${id}`;
+    // console.log(JSON.stringify(data));
+
+    await fetch(preferences.server.url + "/pool").then((response) =>
+        console.log(response)
+    );
+    return;
+
+    // try {
+    //     const query = {
+    //         text: `UPDATE developers SET name = $2, feature = $3 WHERE id = $1`,
+    //         values: [id, data.name, data.feature],
+    //     };
+
+    //     const update_result = await pool.query(
+    //         "UPDATE programmer SET grade = $1 WHERE id = $2",
+    //         [data.grade, id]
+    //     );
+    //     if (update_result.rowCount > 0) await pool.query(query);
+    //     console.log("Bien");
+    // } catch(e) {
+    //     console.log(e);
+    // }
+
+    return;
+
+    return fetch(url, {
+        method: "put",
+        "Content-Type": "application/json",
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .catch((e) => "error");
+};
 
 export const reportOperation = (operation) => {
     const { message } = operation;

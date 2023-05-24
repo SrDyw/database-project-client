@@ -1,15 +1,7 @@
-import React, { useContext } from "react";
-import { AppContext } from "./AppContext";
+import React from "react";
 
-export default function Table({ data }) {
-    const { setWin, setQueryData, setCurrTable, setTable } = useContext(AppContext);
-
-    const OpenActionWin = (data, table) => {
-        setWin('selector.operation');
-        setQueryData([data]);
-        setTable('programmer');
-    }
-
+export default function ReviewTable({ data }) {
+    const date = new Date();
 
     return (
         <div className="table_data">
@@ -17,23 +9,21 @@ export default function Table({ data }) {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
+                            <th>Titulo</th>
+                            <th>Fecha</th>
                             <th>Clasificacion</th>
-                            <th>Grado</th>
-                            <th>Lenguages</th>
+                            <th>Descripcion</th>
+                            <th>Usuario </th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((d, i) => (
-                            <tr key={i} className="element_row" onClick={() => OpenActionWin(d, 'programmer')}>
-                                <td>{d.id}</td>
-                                <td>{d.name}</td>
+                            <tr key={i} className="element_row">
+                                <td>{d.title}</td>
+                                <td>{d.creation_date.split('T')[0]}</td>
                                 <td>{d.feature}</td>
-                                <td>{d.grade}</td>
-                                <td>{d.lenguages.map((d, i) => (
-                                    d + ', '
-                                ))}</td>
+                                <td>{d.description}</td>
+                                <td>{d.id_user}</td>
                             </tr>
                         ))}
                         {/* <tr>

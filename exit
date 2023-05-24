@@ -1,0 +1,144 @@
+[33mcommit 5273e00a0f5ed864dcd43c1b7ab0ebd78b48aec0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 9fd0442 17a4cad
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Mon May 22 13:39:19 2023 -0400
+
+    Merge branch 'master' of https://github.com/SrDyw/database-project-client
+
+[33mcommit 9fd0442957e2bb96f6f435b89281d0e070d78846[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Mon May 22 13:38:55 2023 -0400
+
+    Crud implemented
+
+[33mcommit 17a4cad78fd04cf45a1c445f206f5a59a2cfcc64[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Mon May 22 11:09:44 2023 -0400
+
+    No message
+
+[33mcommit 57de76e2a51f3b90cf5673e8211b8af37c1caa85[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Mon May 22 10:17:35 2023 -0400
+
+    Los nuevos cambios
+
+[33mcommit 1d4ccecddd04817c93fa3f96f200c33fa88da234[m
+Merge: 1345fa0 c4fdf8b
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 20:40:00 2023 -0400
+
+    pinga esto
+
+[33mcommit 1345fa06e3e9fa8307125af2eb70618ed5d44c70[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 20:27:29 2023 -0400
+
+    Dashboard and some others
+
+[33mcommit c4fdf8be2a609521f5c99b023871c70cb42d2b7d[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Sun May 21 20:25:58 2023 -0400
+
+    Solo importe los nuevos componentes
+
+[33mcommit c5dff2c598a5555cffc3637602dafb601cf7b969[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Sun May 21 20:18:36 2023 -0400
+
+    The last one
+
+[33mcommit e663dcf8093ed42719a9c4f8541d05af26d51c43[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Sun May 21 19:45:15 2023 -0400
+
+    Aqui esta el formulario de Juego
+
+[33mcommit f098f6da7be0a3adb464d0e7673bcb09bf5b59f5[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 18:12:35 2023 -0400
+
+    Backend connected
+
+[33mcommit ffd8dc438cf10c8780b412c5f8d2f948d69af7a6[m
+Merge: a35828e 9cb148e
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 04:21:59 2023 -0400
+
+    Merge branch 'master' of https://github.com/SrDyw/database-project-client
+
+[33mcommit a35828e6535de34eb53636874b4c35431c382bee[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 04:20:28 2023 -0400
+
+    Form Added
+
+[33mcommit 337e6be28a43ab430a7c32cabc28870530b8ebe9[m[33m ([m[1;32mupdate[m[33m)[m
+Merge: e443452 9f64468
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Sun May 21 04:18:00 2023 -0400
+
+    Merge branch 'update' of https://github.com/SrDyw/database-project-client into update
+
+[33mcommit 9f644689f4511928a70cd2b2f65e0038dc37a2b0[m[33m ([m[1;31morigin/update[m[33m)[m
+Author: Itsme <Gian MAD>
+Date:   Sat May 20 18:50:35 2023 -0400
+
+    Todos los formularios
+
+[33mcommit 9cb148e89ebc60a6151ea1f86523799477bbba63[m
+Author: Gian MAD <103759634+Gmad25@users.noreply.github.com>
+Date:   Fri May 19 12:19:15 2023 -0400
+
+    Create Hello.md
+    
+    There is no problem. I think so...
+
+[33mcommit 745e870265fdbee32397b55e658a80dd584aa9c4[m[33m ([m[1;31morigin/testing[m[33m)[m
+Author: Itsme <Gian MAD>
+Date:   Fri May 19 11:07:51 2023 -0400
+
+    HelloWorld this is a testing
+
+[33mcommit e4434529e15656f5af1064151ad90f95d4be3502[m
+Merge: a9b220a e12746c
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Thu May 18 23:33:07 2023 -0400
+
+    HTML UPDATE
+
+[33mcommit a9b220a149e496957d590b141057acb8febcda39[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Thu May 18 23:30:58 2023 -0400
+
+    HTML UPDATE
+
+[33mcommit e12746c4418f7b9e66c764ed8267a83a6f5b510a[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Thu May 18 23:26:32 2023 -0400
+
+    Rectified
+
+[33mcommit 284c400fdd352b269418b415250bf99935b26cfa[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Thu May 18 22:20:43 2023 -0400
+
+    Test this right now!
+
+[33mcommit b01ea0287d0631c3c48ae2e0c65210757c01d3ad[m
+Author: Gian MAD <agianmichel@gmail.com>
+Date:   Thu May 18 18:39:02 2023 -0400
+
+    New Post
+
+[33mcommit 7bd2ae911dc04a8262a4feb75deb78b439db3ba0[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Wed May 17 03:30:39 2023 -0400
+
+    Fist commit
+
+[33mcommit 120ecac3912985480ab9f4af0c4a6b14d82c43e3[m
+Author: SrDyw <mdayniel@gmail.com>
+Date:   Tue May 16 10:58:39 2023 -0400
+
+    Initialize project using Create React App

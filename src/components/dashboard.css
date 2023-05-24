@@ -65,7 +65,7 @@ ul {
 
 .selector {
     width: 500px;
-    height: 500px;
+    height: 550px;
     background: white;
     position: fixed;
     left: 50%;
@@ -214,4 +214,22 @@ thead {
 td {
     overflow: hidden;
     padding: 10px;
+}
+
+
+.action_selector {
+    position: fixed;
+    background-color: white;
+    width: 400px;
+    height: 200px;
+}
+
+.list_container {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%);
 }

@@ -7,6 +7,7 @@ export function AppContextProvider(props) {
     const [query, setQuery] = useState("");
     const [queryData, setQueryData] = useState([]);
     const [currTable, setCurrTable] = useState("");
+    const [table, setTable] = useState("");
 
     return (
         <AppContext.Provider
@@ -19,6 +20,8 @@ export function AppContextProvider(props) {
                 setQueryData,
                 currTable,
                 setCurrTable,
+                table,
+                setTable
             }}
         >
             {props.children}

@@ -13,7 +13,8 @@ const LvlDesForm = () => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
-
+        
+        console.log("Eje");
         const result = await createLevelDesigner({ name, feature, speciality });
 
         reportOperation(result);
