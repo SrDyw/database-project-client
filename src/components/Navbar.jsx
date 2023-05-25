@@ -18,9 +18,9 @@ export default function Navbar() {
     setWin('selector');
   }
 
-  const updateHandler = () => {
-    setQuery('update');
-    setWin('selector.update');
+  const operationHandler = () => {
+    setQuery('none');
+    setWin('selector.projOperation');
   }
   return (
     <div className='navbar'>
@@ -37,11 +37,11 @@ export default function Navbar() {
           <li className='n__element'onClick={consultHandler}>
             <div>Consultar</div>
           </li>
-          {/* <li className='n__element' onClick={updateHandler}>
-            <div>Actualizar</div>
-          </li> */}
           <li className='n__element' onClick={removeHandler}>
             <div>Remover</div>
+          </li>
+          <li className='n__element' onClick={operationHandler}>
+            <div>Operaciones</div>
           </li>
         </ul>
     </div>

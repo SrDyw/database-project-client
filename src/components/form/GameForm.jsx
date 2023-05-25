@@ -3,7 +3,7 @@ import { AppContext } from "../AppContext";
 import { create, reportOperation } from "../backend/petitions";
 
 const GameForm = () => {
-    const { setWin } = useContext(AppContext)
+    const { setWin, auto } = useContext(AppContext)
 
     const formHandler = async(e) => {
         e.preventDefault();
@@ -12,6 +12,14 @@ const GameForm = () => {
         const gender = document.getElementById("gender-input").value;
         const dimension = document.getElementById("dim-input").value;
         const id_industry = document.getElementById("id_industry-input").value;
+
+        if (auto === "off") {
+            if (name === "" || release_date === undefined || gender === '' || dimension === undefined || id_industry === undefined) {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
+
 
         const result = await create({ name, release_date, gender, dimension, id_industry }, 'game');
         if (reportOperation(result) === 'succesfuly') {

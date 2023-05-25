@@ -5,7 +5,7 @@ import { create, reportOperation } from "../backend/petitions";
 
 const UserForm = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin } = useContext(AppContext);
+    const { setWin, auto } = useContext(AppContext);
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -16,6 +16,13 @@ const UserForm = () => {
         if (username === "") username = null;
         if (mail === "") mail = null;
         if (pass === "") pass = null;
+
+        if (auto === "off") {
+            if (username === null || mail === null || pass === null) {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
 
         const result = await create({ username, mail, pass }, "user");
         if (reportOperation(result) === "succesfuly") {

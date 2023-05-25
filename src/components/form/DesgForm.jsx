@@ -4,12 +4,21 @@ import { createDesigner, reportOperation } from "../backend/petitions";
 import { AppContext } from "../AppContext";
 
 const DesgForm = () => {
-    const { setWin } = useContext(AppContext)
+    const { setWin, auto } = useContext(AppContext)
     const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
         const feature = document.getElementById('classInput').value;
         const skills = document.getElementById('skillInput').value;
+
+        console.log(`INFO: Autogenerating is ${auto}`);
+
+        if (auto === "off") {
+            if (name === "" || feature === undefined || skills === "") {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
 
         const result = await createDesigner({name, feature, skills});
         reportOperation(result);

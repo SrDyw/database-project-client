@@ -9,7 +9,7 @@ import { AppContext } from "../AppContext";
 
 const Programmer = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin, query, queryData } = useContext(AppContext);
+    const { setWin, query, queryData, auto} = useContext(AppContext);
 
     let [data] = queryData;
     let len = "";
@@ -30,7 +30,16 @@ const Programmer = () => {
         let result;
 
         if (query === "create") {
+            console.log(`INFO: Autogenerating is ${auto}`);
+            
+            if (auto === 'off') {
+                if (name === '' || feature === undefined || lenguage === '') {
+                    alert('Debes llenar todos los campos');
+                    return;
+                }
+            }
             result = await createProgrammer({ name, feature, grade, lenguage });
+            console.log(result);
         }
         if (query === "update") {
             const data = { name, feature, grade, lenguage };
@@ -43,9 +52,9 @@ const Programmer = () => {
             
         }
 
-        // if (reportOperation(result) === "succesfuly") {
-        //     setWin("");
-        // }
+        if (reportOperation(result) === "succesfuly") {
+            setWin("");
+        }
     };
     return (
         <form action="" onSubmit={formHandler} method="post">

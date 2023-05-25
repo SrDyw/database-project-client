@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 
 export default function IndustryTable({ data }) {
     const date = new Date();
+    const {setWin, setTable, setQueryData} = useContext(AppContext)
+
+    const OpenActionWin = (data, table) => {
+        setWin('selector.operation');
+        setQueryData([data]);
+        setTable(table);
+    }
 
     return (
         <div className="table_data">
@@ -16,7 +24,7 @@ export default function IndustryTable({ data }) {
                     </thead>
                     <tbody>
                         {data.map((d, i) => (
-                            <tr key={i} className="element_row">
+                            <tr key={i} className="element_row" onClick={() => OpenActionWin(d, 'industry')}>
                                 <td>{d.id_industry}</td>
                                 <td>{d.name_industry}</td>
                                 <td>{d.feature}</td>

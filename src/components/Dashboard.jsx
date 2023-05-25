@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "./Navbar";
 import Selector from "./Selector";
 import { AppContext } from "./AppContext";
@@ -21,9 +21,34 @@ import ReviewForm from "./form/ReviewForm";
 import ReviewTable from "./ReviewTable";
 import SelectorUpdate from "./SelectorUpdate";
 import Action from "./Action";
+import { changeModeOfServer, getServerMode } from "./backend/petitions";
+import ProjOperation from "./ProjOperation";
+import HighersIndustriesTable from "./HighersIndustriesTable";
+import TopGamesTable from "./TopGamesTable";
+import BestDeveloperTable from "./BestDeveloperTable";
+import WorstReviewTable from "./WorstReviewTable";
 
 export default function Dashboard() {
-    const { win, setWin, queryData, currTable } = useContext(AppContext);
+    const { win, setWin, queryData, currTable, auto, setAuto } = useContext(AppContext);
+
+    const changeMode = async() => {
+        setAuto(auto === 'on' ? 'off' : 'on');
+
+        await changeModeOfServer(auto);
+    }
+
+    const serverMode = async() => {
+        return getServerMode();
+    }
+
+    useEffect(() => {
+        serverMode().then(response => setAuto(response === true ? 'on' : 'off'));
+    }, []);
+
+    // useEffect(async() => {
+    //     console.log("Component loaded");
+    //     return await serverMode();
+    // }, [])
 
     return (
         <div>
@@ -36,6 +61,11 @@ export default function Dashboard() {
             {currTable === 'industries' ? <IndustryTable data = {queryData}></IndustryTable> : ''}
             {currTable === 'users' ? <UserTable data = {queryData}></UserTable> : ''}
             {currTable === 'reviews' ? <ReviewTable data = {queryData}></ReviewTable> : ''}
+
+            {currTable === 'higherInd' ? <HighersIndustriesTable data = {queryData}></HighersIndustriesTable> : ''}
+            {currTable === 'topgames' ? <TopGamesTable data = {queryData}></TopGamesTable> : ''}
+            {currTable === 'bestdev' ? <BestDeveloperTable data = {queryData}></BestDeveloperTable> : ''}
+            {currTable === 'wordrev' ? <WorstReviewTable data = {queryData}></WorstReviewTable> : ''}
 
             {win === "selector" ? <Selector></Selector> : ""}
             {win === "selector.update" ? <SelectorUpdate></SelectorUpdate> : ""}
@@ -50,6 +80,8 @@ export default function Dashboard() {
             {win.split('.')[0] === "select" ? <Select></Select> : ""}
             {win === 'selector.operation' ? <Action></Action> : ""}
 
+            <h3 className="autog_tag" onClick={() => changeMode()}>Autogenerating: {auto === 'on' ? 'On' : 'Off'}</h3>
+            {win === 'selector.projOperation' ? <ProjOperation></ProjOperation> : ''}
         </div>
     );
 }

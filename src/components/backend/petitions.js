@@ -1,5 +1,4 @@
 import { preferences } from "../config/preferences.config";
-import { Pool } from "pg";
 
 //#region CREATE
 // ** CREATE ==================================
@@ -134,6 +133,8 @@ export const select = async (table, id) => {
 };
 
 export const deleteQuery = async (table, id) => {
+    console.log(id);
+
     const url = `${preferences.server.url}/d${table}/${id === "" ? "all" : id}`;
     console.log(`Deleting int ${table} at id ${id} in url ${url}`);
 
@@ -150,20 +151,6 @@ export const deleteQuery = async (table, id) => {
 //#endregion READ
 
 export const update = async (table, data, id) => {
-    const pool = new Pool({
-        user: "postgres",
-        host: "localhost",
-        database: "players_portal",
-        password: "pepe0102",
-        port: 3000,
-    });
-
-    pool.connect()
-        .then(() => console.log("Database connection established"))
-        .catch((err) =>
-            console.error("Error connecting to database\n", err.stack)
-        );
-
     const url = `${preferences.server.url}/u${table}/${id}`;
     // console.log(JSON.stringify(data));
 
@@ -197,6 +184,63 @@ export const update = async (table, data, id) => {
     })
         .then((response) => response.json())
         .catch((e) => "error");
+};
+
+export const changeModeOfServer = async (mode) => {
+    const url = `${preferences.server.url}/changemode`;
+    const data = {
+        serverMode: mode,
+    };
+
+    // console.log("asd");
+
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => "succesfuly")
+        .catch((e) => "error");
+};
+
+export const getServerMode = async () => {
+    const url = `${preferences.server.url}/changemode`;
+
+    return fetch(url).then((response) => response.json());
+};
+
+export const highers_industries = async () => {
+    const url = `${preferences.server.url}/higersind`;
+
+    return fetch(url)
+        .then((response) => response.json())
+        .catch((e) => console.log(e));
+};
+
+export const top_games = async() => {
+    const url = `${preferences.server.url}/topgames`;
+
+    return fetch(url)
+        .then((response) => response.json())
+        .catch((e) => console.log(e));
+};
+
+export const best_developers = async() => {
+    const url = `${preferences.server.url}/bestdev`;
+
+    return fetch(url)
+        .then((response) => response.json())
+        .catch((e) => console.log(e));
+};
+
+export const critict_reviews = async() => {
+    const url = `${preferences.server.url}/criticsreview`;
+
+    return fetch(url)
+        .then((response) => response.json())
+        .catch((e) => console.log(e));
 };
 
 export const reportOperation = (operation) => {

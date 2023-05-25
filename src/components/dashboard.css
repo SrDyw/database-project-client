@@ -107,6 +107,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #43627e42;
 }
 
 .element__list:hover {
@@ -232,4 +233,34 @@ td {
     align-items: center;
     left: 50%;
     transform: translate(-50%);
+}
+
+.autog_tag {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+    color: rgba(255, 255, 255, 0.103);
+    cursor: pointer;
+
+    padding: 0;
+    border-radius: 20px;
+
+    transition: .2s;
+}
+
+.autog_tag:hover {
+    padding: 10px 20px;
+    color: #4c54bb;
+    background-color: white;
+}
+
+.proj_oper {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

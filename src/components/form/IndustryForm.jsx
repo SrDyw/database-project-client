@@ -4,13 +4,20 @@ import { AppContext } from "../AppContext";
 import { create, createIndustry, reportOperation } from "../backend/petitions";
 
 const IndustryForm = () => {
-    const { setWin } = useContext(AppContext)
+    const { setWin, auto } = useContext(AppContext)
 
     const formHandler = async e => {
         e.preventDefault();
         const name_industry = document.getElementById('nameInput').value;
         const feature = document.getElementById('features-input').value;
         
+        if (auto === "off") {
+            if (name_industry === "" || feature === undefined) {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
+
         const result = await create({name_industry, feature}, 'industry');
 
         reportOperation(result);

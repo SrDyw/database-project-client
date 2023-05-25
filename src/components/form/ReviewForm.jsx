@@ -5,7 +5,7 @@ import { create, reportOperation } from "../backend/petitions";
 
 const ReviewForm = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin } = useContext(AppContext);
+    const { setWin, auto } = useContext(AppContext);
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -18,6 +18,14 @@ const ReviewForm = () => {
         if (title === "") title = null;
         if (creation_date === "") creation_date = null;
         if (description === "") description = null;
+        
+
+        if (auto === "off") {
+            if (title === null || creation_date === null || description === null) {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
 
         const result = await create(
             { title, creation_date, feature, description, id_user },

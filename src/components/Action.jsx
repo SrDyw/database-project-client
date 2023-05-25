@@ -8,7 +8,7 @@ export default function Action() {
     const deleteHandler = async() => {
         const [ data ] = queryData;
 
-        const result = await deleteQuery(table, data.id || data.id_industry || data.id_game);
+        const result = await deleteQuery(table, data.id || data.id_game || data.id_industry || data.id_user);
         if (result.message === 'succesfuly') {
             alert('Elemento eliminado');
         }

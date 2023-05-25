@@ -4,22 +4,31 @@ import { createEditor, reportOperation } from "../backend/petitions";
 import { AppContext } from "../AppContext";
 
 const EditForm = () => {
-    const { setWin } = useContext(AppContext)
+    const { setWin, auto } = useContext(AppContext);
 
-    const formHandler = async e => {
-        e.preventDefault()
-        const name = document.getElementById('nameInput').value;
-        const feature = document.getElementById('classInput').value;
-        const budget = document.getElementById('presInput').value;
-        const website = document.getElementById('webInput').value;
+    const formHandler = async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("nameInput").value;
+        const feature = document.getElementById("classInput").value;
+        const budget = document.getElementById("presInput").value;
+        const website = document.getElementById("webInput").value;
 
-        const result = await createEditor({name, feature, budget, website});
+        console.log(`INFO: Autogenerating is ${auto}`);
+
+        if (auto === "off") {
+            if (name === "" || feature === undefined || budget === "" || website === "") {
+                alert("Debes llenar todos los campos");
+                return;
+            }
+        }
+
+        const result = await createEditor({ name, feature, budget, website });
         reportOperation(result);
-    }
+    };
 
     return (
         <form action="" onSubmit={formHandler}>
-            <div className="close" onClick={() => setWin('')}></div>
+            <div className="close" onClick={() => setWin("")}></div>
             <h1 className="title">Editor</h1>
 
             {/* Input section  */}
