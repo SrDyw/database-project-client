@@ -3,13 +3,14 @@ import { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export function AppContextProvider(props) {
-    const [win, setWin] = useState("");
+    const [win, setWin] = useState("start");
     const [query, setQuery] = useState("");
     const [queryData, setQueryData] = useState([]);
     const [currTable, setCurrTable] = useState("");
     const [table, setTable] = useState("");
     const [auto, setAuto] = useState('off');
     const [isLoading, SetLoadingState] = useState(false);
+    const [isConnected, SetConnection] = useState(false);
 
     return (
         <AppContext.Provider
@@ -27,7 +28,9 @@ export function AppContextProvider(props) {
                 auto,
                 setAuto,
                 isLoading,
-                SetLoadingState
+                SetLoadingState,
+                isConnected,
+                SetConnection
             }}
         >
             {props.children}

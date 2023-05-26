@@ -234,3 +234,10 @@ export const reportOperation = (operation) => {
     }
     return message;
 };
+
+
+export const isConnected = async() => {
+    const url = `${preferences.server.url}`;
+
+    return fetch(url).then(response => response.json());
+}

@@ -13,7 +13,9 @@ export default function App() {
 
     // console.log(x);
     return (
+        <>
         <Dashboard></Dashboard>
+        </>
     );
 }
 

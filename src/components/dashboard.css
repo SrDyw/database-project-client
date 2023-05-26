@@ -308,6 +308,42 @@ td {
     animation: loading_animation 1s infinite linear;
 }
 
+.connection_win h2, h4 {
+    margin: 0;
+}
+.connection_win { 
+    width: 250px;
+    height: 150px;
+    background-color: white;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.connection_win button {
+    padding: 0;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.connection_container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.535);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
 @keyframes loading_animation {
     0%{
         transform: rotate(0deg);
