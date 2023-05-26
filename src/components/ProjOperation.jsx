@@ -3,7 +3,7 @@ import { AppContext } from "./AppContext";
 import { best_developers, critict_reviews, highers_industries, top_games } from "./backend/petitions";
 
 export default function ProjOperation() {
-    const { setWin, setQueryData, setCurrTable } = useContext(AppContext);
+    const { setWin, setQueryData, setCurrTable, SetLoadingState } = useContext(AppContext);
 
     const actionHandler = async(operation) => {
         const action_dicc = {
@@ -12,7 +12,7 @@ export default function ProjOperation() {
             'mdv' : best_developers,
             'rwc' : critict_reviews
         }   
-
+        SetLoadingState(true)
         const result = await action_dicc[operation]();
         console.log(result);
         setQueryData(result);
@@ -24,6 +24,8 @@ export default function ProjOperation() {
             setCurrTable('bestdev')
         if (operation === 'rwc')
             setCurrTable('wordrev')
+        SetLoadingState(false)
+        setWin('');
     };
 
 

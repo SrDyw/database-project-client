@@ -4,7 +4,7 @@ import { AppContext } from "./AppContext";
 import { deleteQuery, select } from "./backend/petitions";
 
 export default function Select() {
-    const { setWin, win, setQueryData, setCurrTable, query } =
+    const { setWin, win, setQueryData, setCurrTable, query, SetLoadingState } =
         useContext(AppContext);
 
     const formHandler = async (e) => {
@@ -26,7 +26,10 @@ export default function Select() {
                 revw: "reviews"
 
             };
+            SetLoadingState(true);
             const select_result = await select(table_dicc[t], id);
+
+            SetLoadingState(false);
 
             // console.log(select_result);
             if (select_result !== "error") {
@@ -44,8 +47,12 @@ export default function Select() {
                 lvds: "leveldesigner",
                 inc: "industry",
                 user: "user",
+                revw: "review"
             };
+            SetLoadingState(true)
             const select_result = await deleteQuery(table_dicc[t], id);
+            SetLoadingState(false)
+
             console.log(
                 select_result)
             if (select_result.message === "succesfuly") {

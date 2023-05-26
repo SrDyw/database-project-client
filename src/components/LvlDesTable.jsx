@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 
 export default function LvlDesTable({ data }) {
+    const {setWin, setTable, setQueryData} = useContext(AppContext)
+
+    const OpenActionWin = (data, table) => {
+        setWin('selector.operation');
+        setQueryData([data]);
+        // console.log(data);
+        setTable(table);
+    }
+
     return (
         <div className="table_data">
             {data.length > 0 ? (
@@ -15,7 +25,7 @@ export default function LvlDesTable({ data }) {
                     </thead>
                     <tbody>
                         {data.map((d, i) => (
-                            <tr key={i} className="element_row">
+                            <tr key={i} className="element_row" onClick={() => OpenActionWin(d, 'levels_designer')}>
                                 <td>{d.id}</td>
                                 <td>{d.name}</td>
                                 <td>{d.feature}</td>

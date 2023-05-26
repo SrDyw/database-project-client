@@ -1,21 +1,31 @@
 import React, { useContext, useState } from "react";
 import "./Form.css";
-import { createLevelDesigner, reportOperation } from "../backend/petitions";
+import { createLevelDesigner, reportOperation, update } from "../backend/petitions";
 import OperationResult from "./OperationResult";
 import { AppContext } from "../AppContext";
 
 const LvlDesForm = () => {
     const [speciality, setSpeciality] = useState("2D");
     const [resultOperation, setResultOperation] = useState("waiting");
-    const {setWin} = useContext(AppContext)
+    const {setWin, SetLoadingState, queryData, query} = useContext(AppContext)
+
+    let [data] = queryData;
+    if (query !== "update") {
+        data = { name: '', feature: 0}
+    }  
     
     const formHandler = async (e) => {
         e.preventDefault();
         const name = document.getElementById("nameInput").value;
         const feature = document.getElementById("classInput").value;
         
-        console.log("Eje");
-        const result = await createLevelDesigner({ name, feature, speciality });
+        SetLoadingState(true);
+        let result;
+        if (query === "create")
+            result = await createLevelDesigner({ name, feature, speciality });
+        else
+            result = await update('leveldesigner', { name, feature, speciality }, data.id);
+        SetLoadingState(false);
 
         reportOperation(result);
     };
@@ -29,11 +39,11 @@ const LvlDesForm = () => {
                 {/* Input section  */}
                 <div>
                     <label htmlFor="nameInput">Nombre:</label>
-                    <input type="text" id="nameInput" />
+                    <input type="text" id="nameInput" defaultValue={data.name}/>
                 </div>
                 <div>
                     <label htmlFor="classInput">Clasificación:</label>
-                    <input type="text" id="classInput" />
+                    <input type="text" id="classInput" defaultValue={data.feature}/>
                 </div>
                 <div className="radio-buttons">
                     <div className="form-group">

@@ -27,9 +27,10 @@ import HighersIndustriesTable from "./HighersIndustriesTable";
 import TopGamesTable from "./TopGamesTable";
 import BestDeveloperTable from "./BestDeveloperTable";
 import WorstReviewTable from "./WorstReviewTable";
+import Loading from "./Loading";
 
 export default function Dashboard() {
-    const { win, setWin, queryData, currTable, auto, setAuto } = useContext(AppContext);
+    const { win, setWin, queryData, currTable, auto, setAuto, isLoading } = useContext(AppContext);
 
     const changeMode = async() => {
         setAuto(auto === 'on' ? 'off' : 'on');
@@ -82,6 +83,7 @@ export default function Dashboard() {
 
             <h3 className="autog_tag" onClick={() => changeMode()}>Autogenerating: {auto === 'on' ? 'On' : 'Off'}</h3>
             {win === 'selector.projOperation' ? <ProjOperation></ProjOperation> : ''}
+            {isLoading ? <Loading></Loading> : ''}
         </div>
     );
 }

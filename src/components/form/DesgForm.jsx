@@ -1,10 +1,22 @@
 import React, { useContext } from "react";
 import "./Form.css";
-import { createDesigner, reportOperation } from "../backend/petitions";
+import { createDesigner, reportOperation, update } from "../backend/petitions";
 import { AppContext } from "../AppContext";
 
 const DesgForm = () => {
-    const { setWin, auto } = useContext(AppContext)
+    const { setWin, auto, SetLoadingState, queryData, query} = useContext(AppContext)
+
+    let [data] = queryData;
+    let skills = "";
+    if (query === "update") {
+
+        data.skills.map((s, i) => {
+            if (i < data.skills.length - 1) skills += s + ", ";
+            else skills += s;
+        });
+    } else data = { name: '', feature: 0}
+
+
     const formHandler = async e => {
         e.preventDefault()
         const name = document.getElementById('nameInput').value;
@@ -19,8 +31,14 @@ const DesgForm = () => {
                 return;
             }
         }
+        SetLoadingState(true);
+        let result;
+        if (query === 'create')
+            result = await createDesigner({name, feature, skills});
+        else 
+            result = await update('designer', {name, feature, skills}, data.id);
 
-        const result = await createDesigner({name, feature, skills});
+        SetLoadingState(false);
         reportOperation(result);
     }
     return (
@@ -31,15 +49,15 @@ const DesgForm = () => {
             {/* Input section  */}
             <div>
                 <label htmlFor="nameInput">Nombre:</label>
-                <input type="text" id="nameInput" />
+                <input type="text" id="nameInput" defaultValue={data.name || ''}/>
             </div>
             <div>
                 <label htmlFor="classInput">Clasificación:</label>
-                <input type="text" id="classInput" />
+                <input type="text" id="classInput" defaultValue={data.feature || undefined}/>
             </div>
             <div>
                 <label htmlFor="skillInput">habilidades:</label>
-                <input type="text" id="skillInput" />
+                <input type="text" id="skillInput" defaultValue={skills}/>
             </div>
             {/* END Input section  */}
 

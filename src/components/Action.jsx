@@ -3,7 +3,7 @@ import { AppContext } from "./AppContext";
 import { deleteQuery } from "./backend/petitions";
 
 export default function Action() {
-    const { setWin, queryData, table, setQuery } = useContext(AppContext);
+    const { setWin, queryData, table, setQuery, query } = useContext(AppContext);
 
     const deleteHandler = async() => {
         const [ data ] = queryData;
@@ -18,6 +18,13 @@ export default function Action() {
     }
     const table_dicc = {
         "programmer" : 'prog',
+        "designer"   : 'desg',
+        "levels_designer"   : 'lvds',
+        "editor"   : 'edit',
+        "game"   : 'game',
+        "industry"   : 'inc',
+        "user"   : 'user',
+        "review": 'revw'
     }
 
     const updateHandler = () => {
@@ -31,6 +38,12 @@ export default function Action() {
             <div className="list_container">
                 <ul className="list">
                     <li className="element__list" onClick={deleteHandler}>Eliminar</li>
+                    {
+                        table !== 'review' ? <>
+                        <li className="element__list" onClick={updateHandler}>Actualizar</li>
+                        </> : ''
+                    }
+                    
                 </ul>
             </div>
             <div className="close" onClick={() => setWin("")}></div>

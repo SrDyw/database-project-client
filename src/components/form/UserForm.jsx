@@ -1,11 +1,17 @@
 import React, { useContext, useState } from "react";
 import "./Form.css";
 import { AppContext } from "../AppContext";
-import { create, reportOperation } from "../backend/petitions";
+import { create, reportOperation, update } from "../backend/petitions";
 
 const UserForm = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin, auto } = useContext(AppContext);
+    const { setWin, auto, SetLoadingState, query, queryData } = useContext(AppContext);
+
+    let [data] = queryData;
+
+    if (query !== 'update') {
+        data = {username:'', mail:undefined, pass:''}
+    }
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -23,8 +29,14 @@ const UserForm = () => {
                 return;
             }
         }
-
-        const result = await create({ username, mail, pass }, "user");
+        SetLoadingState(true);
+        let result;
+        if (query === 'create')
+            result = await create({ username, mail, pass }, "user");
+        else 
+            result = await update("user", { username, mail, pass }, data.id);  
+            
+        SetLoadingState(false);
         if (reportOperation(result) === "succesfuly") {
             setWin("");
         }
@@ -36,15 +48,15 @@ const UserForm = () => {
             <div className="close" onClick={() => setWin("")}></div>
             <div>
                 <label htmlFor="user-input">Nombre de usuario:</label>
-                <input type="text" id="user-input" />
+                <input type="text" id="user-input" defaultValue={data.username}/>
             </div>
             <div>
                 <label htmlFor="mail-input">Email:</label>
-                <input type="email" id="mail-input" />
+                <input type="email" id="mail-input" defaultValue={data.mail}/>
             </div>
             <div>
                 <label htmlFor="psw-input">Contraseña:</label>
-                <input type="password" id="psw-input" />
+                <input type="password" id="psw-input" defaultValue={data.pass}/>
             </div>
 
             {/* END Input Section */}

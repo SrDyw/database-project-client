@@ -7,6 +7,7 @@ export default function DesgTable({ data }) {
     const OpenActionWin = (data, table) => {
         setWin('selector.operation');
         setQueryData([data]);
+        // console.log(data);
         setTable(table);
     }
 

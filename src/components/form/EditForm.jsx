@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
 import "./Form.css";
-import { createEditor, reportOperation } from "../backend/petitions";
+import { createEditor, reportOperation, update } from "../backend/petitions";
 import { AppContext } from "../AppContext";
 
 const EditForm = () => {
-    const { setWin, auto } = useContext(AppContext);
+    const { setWin, auto, SetLoadingState, queryData, query } = useContext(AppContext);
+
+
+    let [data] = queryData;
+    if (query !== "update") {
+        data = { name: '', feature: 0, budget: "", website: ""}
+    }
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -22,7 +28,13 @@ const EditForm = () => {
             }
         }
 
-        const result = await createEditor({ name, feature, budget, website });
+        SetLoadingState(true);
+        let result;
+        if (query === 'create')
+            result = await createEditor({ name, feature, budget, website });
+        else 
+            result = await update('editor', { name, feature, budget, website }, data.id);
+        SetLoadingState(false);
         reportOperation(result);
     };
 
@@ -34,19 +46,19 @@ const EditForm = () => {
             {/* Input section  */}
             <div>
                 <label htmlFor="nameInput">Nombre:</label>
-                <input type="text" id="nameInput" />
+                <input type="text" id="nameInput" defaultValue={data.name}/>
             </div>
             <div>
                 <label htmlFor="classInput">Clasificación:</label>
-                <input type="text" id="classInput" />
+                <input type="text" id="classInput" defaultValue={data.feature}/>
             </div>
             <div>
                 <label htmlFor="presInput">Presupuesto:</label>
-                <input type="number" id="presInput" />
+                <input type="number" id="presInput" defaultValue={data.budget}/>
             </div>
             <div>
                 <label htmlFor="webInput">Website:</label>
-                <input type="text" id="webInput" />
+                <input type="text" id="webInput" defaultValue={data.website}/>
             </div>
             {/* END Input section  */}
 

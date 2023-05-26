@@ -152,34 +152,15 @@ export const deleteQuery = async (table, id) => {
 
 export const update = async (table, data, id) => {
     const url = `${preferences.server.url}/u${table}/${id}`;
-    // console.log(JSON.stringify(data));
 
-    await fetch(preferences.server.url + "/pool").then((response) =>
-        console.log(response)
-    );
-    return;
 
-    // try {
-    //     const query = {
-    //         text: `UPDATE developers SET name = $2, feature = $3 WHERE id = $1`,
-    //         values: [id, data.name, data.feature],
-    //     };
-
-    //     const update_result = await pool.query(
-    //         "UPDATE programmer SET grade = $1 WHERE id = $2",
-    //         [data.grade, id]
-    //     );
-    //     if (update_result.rowCount > 0) await pool.query(query);
-    //     console.log("Bien");
-    // } catch(e) {
-    //     console.log(e);
-    // }
-
-    return;
+    console.log(data);
 
     return fetch(url, {
-        method: "put",
-        "Content-Type": "application/json",
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
     })
         .then((response) => response.json())

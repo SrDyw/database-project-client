@@ -9,7 +9,7 @@ import { AppContext } from "../AppContext";
 
 const Programmer = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin, query, queryData, auto} = useContext(AppContext);
+    const { setWin, query, queryData, auto, SetLoadingState} = useContext(AppContext);
 
     let [data] = queryData;
     let len = "";
@@ -28,7 +28,6 @@ const Programmer = () => {
         const lenguage = document.getElementById("lanInput").value;
 
         let result;
-
         if (query === "create") {
             console.log(`INFO: Autogenerating is ${auto}`);
             
@@ -38,8 +37,10 @@ const Programmer = () => {
                     return;
                 }
             }
+            SetLoadingState(true);
             result = await createProgrammer({ name, feature, grade, lenguage });
-            console.log(result);
+            
+            SetLoadingState(false);
         }
         if (query === "update") {
             const data = { name, feature, grade, lenguage };

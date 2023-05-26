@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
 import './Form.css'
 import { AppContext } from "../AppContext";
-import { create, createIndustry, reportOperation } from "../backend/petitions";
+import { create, createIndustry, reportOperation, update } from "../backend/petitions";
 
 const IndustryForm = () => {
-    const { setWin, auto } = useContext(AppContext)
+    const { setWin, auto, SetLoadingState, query, queryData } = useContext(AppContext)
 
+
+    let [data] = queryData;
+
+    if (query !== 'update') {
+        data = {name_industry:'', feature: undefined}
+    }
     const formHandler = async e => {
         e.preventDefault();
         const name_industry = document.getElementById('nameInput').value;
@@ -17,9 +23,14 @@ const IndustryForm = () => {
                 return;
             }
         }
+        SetLoadingState(true);
+        let result;
+        if (query === 'create')
+            result = await create({name_industry, feature}, 'industry');
+        else 
+            result = await update('industry', {name_industry, feature}, data.id_industry);
 
-        const result = await create({name_industry, feature}, 'industry');
-
+        SetLoadingState(false);
         reportOperation(result);
     }
 
@@ -30,12 +41,12 @@ const IndustryForm = () => {
             {/* Input section  */}
             <div>
                 <label htmlFor="nameInput">Nombre:</label>
-                <input type="text" id="nameInput" />
+                <input type="text" id="nameInput" defaultValue={data.name_industry}/>
             </div>
 
             <div id="full-stars-example-two">
                 <label htmlFor="features-input">Features</label>
-                <input type="number" name="features-input" id="features-input" min={1} max={5} step={1}/>
+                <input type="number" name="features-input" id="features-input" min={1} max={5} step={1} defaultValue={data.feature}/>
             </div>
             {/* END Input section  */}
 

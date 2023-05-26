@@ -1,36 +1,68 @@
 import React, { useContext, useState } from "react";
 import "./Form.css";
 import { AppContext } from "../AppContext";
-import { create, reportOperation } from "../backend/petitions";
+import { create, reportOperation, update } from "../backend/petitions";
 
 const ReviewForm = () => {
     const [grade, setGrade] = useState("junnior");
-    const { setWin, auto } = useContext(AppContext);
+    const { setWin, auto, SetLoadingState, query, queryData } =
+        useContext(AppContext);
+
+    let [data] = queryData;
+
+    if (query !== "update") {
+        data = {
+            title: "",
+            creation_date: undefined,
+            description: "",
+            feature: undefined,
+        };
+    }
 
     const formHandler = async (e) => {
         e.preventDefault();
         let title = document.getElementById("title-input").value;
-        let creation_date = document.getElementById("date-input").value;
         let feature = document.getElementById("feature-input").value;
         let description = document.getElementById("desc-input").value;
-        let id_user = document.getElementById("id-input").value;
+        let creation_date = document.getElementById("date-input");
+        let id_user = document.getElementById("id-input");
+
+        if (creation_date !== null) creation_date = creation_date.value;
+        if (id_user !== null) id_user = id_user.value;
+
+
 
         if (title === "") title = null;
         if (creation_date === "") creation_date = null;
         if (description === "") description = null;
-        
 
         if (auto === "off") {
-            if (title === null || creation_date === null || description === null) {
+            if (
+                title === null ||
+                creation_date === null ||
+                description === null
+            ) {
                 alert("Debes llenar todos los campos");
                 return;
             }
         }
-
-        const result = await create(
-            { title, creation_date, feature, description, id_user },
-            "review"
-        );
+        SetLoadingState(true);
+        let result;
+        
+        if (query === 'create') {
+            result = await create(
+                { title, creation_date, feature, description, id_user },
+                "review"
+            );
+        }
+        else  {
+            result = await update(
+                'review',
+                { title, creation_date, feature, description, id_user },
+                data.id_user
+            );
+        }
+        SetLoadingState(false);
         if (reportOperation(result) === "succesfuly") {
             // setWin("");
         }
@@ -42,17 +74,16 @@ const ReviewForm = () => {
             {/* Input Section */}
             <div>
                 <label htmlFor="title-input">Título:</label>
-                <input type="text" id="title-input" />
+                <input type="text" id="title-input" defaultValue={data.title} />
             </div>
             <div>
                 <label htmlFor="feature-input">Clasificacion:</label>
-                <input type="number" id="feature-input" />
+                <input
+                    type="number"
+                    id="feature-input"
+                    defaultValue={data.feature}
+                />
             </div>
-            <div>
-                <label htmlFor="date-input">Fecha</label>
-                <input type="date" id="date-input" />
-            </div>
-
             {/* <div className="fea-div">
                 <label htmlFor="features-input">Features</label>
                 <input
@@ -66,12 +97,31 @@ const ReviewForm = () => {
             </div> */}
             <div className="desc-input">
                 <label htmlFor="descrp-input">Descripción:</label>
-                <input type="text" name="desc-input" id="desc-input" />
+                <input
+                    type="text"
+                    name="desc-input"
+                    id="desc-input"
+                    defaultValue={data.description}
+                />
             </div>
-            <div className="id-input">
-                <label htmlFor="id-input">ID Usuario:</label>
-                <input type="number" name="id-input" id="id-input" />
-            </div>
+            {query === "create" ? (
+                <>
+                    <div>
+                        <label htmlFor="date-input">Fecha</label>
+                        <input
+                            type="date"
+                            id="date-input"
+                            defaultValue={data.creation_date}
+                        />
+                    </div>
+                    <div className="id-input">
+                        <label htmlFor="id-input">ID Usuario:</label>
+                        <input type="number" name="id-input" id="id-input" />
+                    </div>
+                </>
+            ) : (
+                ""
+            )}
 
             {/* END Input Section */}
             <button onSubmit={""}>Ingresar</button>
